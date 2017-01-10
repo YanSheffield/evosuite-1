@@ -75,6 +75,7 @@ public class TestGeneration {
 
 
 		if (line.hasOption("class")) {
+//Enter point 3 *4
 			results.addAll(generateTests(strategy, line.getOptionValue("class"), javaOpts));
 		} else if (line.hasOption("prefix")){
 			results.addAll(generateTestsPrefix(strategy, line.getOptionValue("prefix"),javaOpts));
@@ -462,6 +463,7 @@ public class TestGeneration {
 				 */
 				for (ClientNodeRemote client : clients) {
 					try {
+//Enter point 4	* 3
 						client.startNewSearch();
 					} catch (RemoteException e) {
 						logger.error("Error in starting clients", e);

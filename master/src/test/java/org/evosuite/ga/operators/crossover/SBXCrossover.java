@@ -127,4 +127,5 @@ public class SBXCrossover<T extends NSGAChromosome> extends CrossOverFunction
             v2.setValue(valueX2);
         }
     }
+
 }

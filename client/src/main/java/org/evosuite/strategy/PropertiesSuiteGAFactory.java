@@ -36,6 +36,7 @@ import org.evosuite.ga.MinimizeSizeSecondaryObjective;
 import org.evosuite.coverage.ibranch.IBranchSecondaryObjective;
 import org.evosuite.ga.SecondaryObjective;
 import org.evosuite.ga.metaheuristics.GeneticAlgorithm;
+import org.evosuite.ga.metaheuristics.LambdaGA;
 import org.evosuite.ga.metaheuristics.RandomSearch;
 import org.evosuite.ga.metaheuristics.SPEA2;
 import org.evosuite.ga.metaheuristics.SteadyStateGA;
@@ -182,6 +183,9 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
         case NSGAII:
             logger.info("Chosen search algorithm: NSGAII");
             return new NSGAII<TestSuiteChromosome>(factory);
+        case LAMBDAGA:
+        	logger.info("Choose search algorithm: Lambda GA");
+        	return new LambdaGA<TestSuiteChromosome>(factory);
         case SPEA2:
             logger.info("Chosen search algorithm: SPEA2");
             return new SPEA2<TestSuiteChromosome>(factory);
@@ -279,6 +283,7 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
 		ChromosomeFactory<TestSuiteChromosome> factory = getChromosomeFactory();
 		
 		// FIXXME
+//Enter point 9
 		GeneticAlgorithm<TestSuiteChromosome> ga = getGeneticAlgorithm(factory);
 
 		if (Properties.NEW_STATISTICS)

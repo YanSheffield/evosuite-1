@@ -296,7 +296,7 @@ public class TestChromosome extends ExecutableChromosome {
 	public void mutate() {
 		boolean changed = false;
 		mutationHistory.clear();
-
+		
 		if(mockChange()){
 			changed = true;
 		}
@@ -311,6 +311,7 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: delete");
 			if(mutationDelete())
 				changed = true;
+//			System.out.println("*delete");
 		}
 
 		// Change
@@ -318,6 +319,7 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: change");
 			if (mutationChange())
 				changed = true;
+//			System.out.println("*Change");
 		}
 
 		// Insert
@@ -325,6 +327,7 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: insert");
 			if (mutationInsert())
 				changed = true;
+//			System.out.println("*Insert");
 		}
 
 		if (changed) {
@@ -729,6 +732,24 @@ public class TestChromosome extends ExecutableChromosome {
 	 */
 	public static List<SecondaryObjective<?>> getSecondaryObjectives() {
 		return secondaryObjectives;
+	}
+
+	@Override
+	public void mutateWithHighProbability() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void uniformCrossOver(Chromosome parent1,Chromosome parent2) throws ConstructionFailedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void uniformCrossOver(Chromosome bestMutant, int iteration, String s) throws ConstructionFailedException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

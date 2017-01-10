@@ -28,6 +28,7 @@ import java.util.Set;
 import org.evosuite.Properties;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
+import org.evosuite.ga.ConstructionFailedException;
 import org.evosuite.ga.SecondaryObjective;
 import org.evosuite.ga.localsearch.LocalSearchObjective;
 import org.evosuite.testcase.TestCase;
@@ -268,6 +269,17 @@ public class TestSuiteChromosome extends AbstractTestSuiteChromosome<TestChromos
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * Apply high mutation on test suite level
+	 */
+	public void mutateWithHighProbability(){
+		for (int i = 0; i < Properties.NUMBER_OF_MUTATIONS; i++) {
+			super.mutateWithHighProbobility();
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * Determine relative ordering of this chromosome to another chromosome If
 	 * fitness is equal, the shorter chromosome comes first
 	 */
@@ -292,5 +304,5 @@ public class TestSuiteChromosome extends AbstractTestSuiteChromosome<TestChromos
 		}
 		return result;
 	}
- 
+
 }

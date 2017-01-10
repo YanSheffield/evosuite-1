@@ -57,6 +57,7 @@ public class WholeTestSuiteStrategy extends TestGenerationStrategy {
 		// Set up search algorithm
 		LoggingUtils.getEvoLogger().info("* Setting up search algorithm for whole suite generation");
 		PropertiesSuiteGAFactory algorithmFactory = new PropertiesSuiteGAFactory();
+//Enter point 8
 		GeneticAlgorithm<TestSuiteChromosome> algorithm = algorithmFactory.getSearchAlgorithm();
 		
 		if(Properties.SERIALIZE_GA || Properties.CLIENT_ON_THREAD)
@@ -109,8 +110,10 @@ public class WholeTestSuiteStrategy extends TestGenerationStrategy {
 			LoggingUtils.getEvoLogger().info("* Using seed {}", Randomness.getSeed() );
 			LoggingUtils.getEvoLogger().info("* Starting evolution");
 			ClientServices.getInstance().getClientNode().changeState(ClientState.SEARCH);
-
+//Enter point 10 8
+			System.out.println("Enter point 10");
 			algorithm.generateSolution();
+			
 			// TODO: Refactor MOO!
 			// bestSuites = (List<TestSuiteChromosome>) ga.getBestIndividuals();
 			testSuite = (TestSuiteChromosome) algorithm.getBestIndividual();

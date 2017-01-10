@@ -59,5 +59,4 @@ public class SinglePointRelativeCrossOver extends CrossOverFunction {
 		parent1.crossOver(t2, pos1, pos2);
 		parent2.crossOver(t1, pos2, pos1);
 	}
-
 }
