@@ -20,6 +20,7 @@
 package org.evosuite.ga.operators.crossover;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ConstructionFailedException;
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Gordon Fraser
  */
-public abstract class CrossOverFunction implements Serializable {
+public abstract class CrossOverFunction<T extends Chromosome> implements Serializable {
 
 	private static final long serialVersionUID = -4765602400132319324L;
 
@@ -50,5 +51,5 @@ public abstract class CrossOverFunction implements Serializable {
 	 */
 	public abstract void crossOver(Chromosome parent1, Chromosome parent2)
 	        throws ConstructionFailedException;
-
+//	public abstract void uniformCrossOver(T crossOverOffspring,Chromosome parent1,Chromosome parent2) throws ConstructionFailedException;
 }

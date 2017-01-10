@@ -327,7 +327,7 @@ public class Properties {
 	// ---------------------------------------------------------------
 	// Search algorithm
 	public enum Algorithm {
-		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2
+		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2,LAMBDAGA
 	}
 
 	// MOSA PROPERTIES
@@ -507,6 +507,11 @@ public class Properties {
 	@Parameter(key = "mutation_rate", group = "Search Algorithm", description = "Probability of mutation")
 	@DoubleValue(min = 0.0, max = 1.0)
 	public static double MUTATION_RATE = 0.75;
+	
+	/** Constant <code>MUTATION_RATE=0.75</code> */
+	@Parameter(key = "high_mutation_probability", group = "Search Algorithm", description = "It is applied on lambda GA only")
+	@DoubleValue(min = 0.0, max = 1.0)
+	public static double HIGH_MUTATION_PROBOBILITY = 1d/3d;
 
 	/** Constant <code>NUMBER_OF_MUTATIONS=1</code> */
 	@Parameter(key = "number_of_mutations", group = "Search Algorithm", description = "Number of single mutations applied on an individual when a mutation event occurs")

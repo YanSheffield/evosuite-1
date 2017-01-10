@@ -31,6 +31,7 @@ import org.evosuite.ga.FitnessFunction;
 import org.evosuite.ga.FitnessReplacementFunction;
 import org.evosuite.ga.ReplacementFunction;
 import org.evosuite.ga.localsearch.LocalSearchBudget;
+import org.evosuite.utils.LoggingUtils;
 import org.evosuite.utils.Randomness;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +85,7 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void evolve() {
+		LoggingUtils.getEvoLogger().info("Enter Envole++");
 		List<T> newGeneration = new ArrayList<T>();
 
 		// Elitism

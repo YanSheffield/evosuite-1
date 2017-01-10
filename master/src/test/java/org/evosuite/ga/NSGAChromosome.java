@@ -128,7 +128,16 @@ public class NSGAChromosome extends Chromosome
 		// empty
 		return 0;
 	}
-
+//	@Override
+//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//	@Override
+//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 	/**
 	 *  Polynomial Mutation (for real values) - PM
 	 */
@@ -194,4 +203,38 @@ public class NSGAChromosome extends Chromosome
 		// empty
 		return 0;
 	}
+
+//	@Override
+//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
+	@Override
+	public void mutateWithHighProbability() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void uniformCrossOver(Chromosome parent1, Chromosome parent2) throws ConstructionFailedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void uniformCrossOver(Chromosome bestMutant, int iteration, String s) throws ConstructionFailedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+//	@Override
+//	public void mutateWithHighProbability() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }
