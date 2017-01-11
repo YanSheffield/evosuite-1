@@ -15,8 +15,8 @@ import org.evosuite.testsuite.TestSuiteChromosome;
 import org.evosuite.utils.LoggingUtils;
 
 public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
-	// T TestSuitChromesome
-	private static final long serialVersionUID = 5229089847512798127L;
+	// what is used for??
+	private static final long serialVersionUID = 529089847512798127L;
 	// new TestSuiteChromosomeFactory(new ArchiveTestChromosomeFactory());
 	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LambdaGA.class);
 
@@ -47,8 +47,6 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		updateFitnessFunctionsAndValues();
 		calculateFitnessAndSortPopulation();
 		T bestMutant = getBestIndividual();
-		System.out.println("Parent "+parent.getFitness());
-		System.out.println("---bestMutant "+bestMutant.getFitness());
 		// uniform crossover phrase
 		List<T> crossoverOffspring = new ArrayList<T>();
 

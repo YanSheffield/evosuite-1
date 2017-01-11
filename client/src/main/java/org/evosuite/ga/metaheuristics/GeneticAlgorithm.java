@@ -428,7 +428,6 @@ public abstract class GeneticAlgorithm<T extends Chromosome> implements SearchAl
 			}
 
 			population.add(individual);
-//			System.out.println("--Population 1---"+population);
 			if (isFinished())
 				break;
 		}
