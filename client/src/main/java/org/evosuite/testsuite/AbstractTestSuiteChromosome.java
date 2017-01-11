@@ -213,51 +213,6 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		}
 	}
 
-	public void uniformCrossOver(Chromosome parent, Chromosome bestMutant) throws ConstructionFailedException {
-		if (!(parent instanceof AbstractTestSuiteChromosome<?>)
-				|| !(bestMutant instanceof AbstractTestSuiteChromosome<?>)) {
-			throw new IllegalArgumentException(
-					"AbstractTestSuiteChromosome.crossOver() called with parameter of unsupported type "
-							+ parent.getClass() + " or " + bestMutant.getClass());
-		}
-
-		AbstractTestSuiteChromosome<T> chromosomeParent = (AbstractTestSuiteChromosome<T>) parent;
-		AbstractTestSuiteChromosome<T> chromosomebestMutant = (AbstractTestSuiteChromosome<T>) bestMutant;
-		// System.out.println("parentSize " + parent.size());
-		// System.out.println("BestOffspringSize " + bestMutant.size());
-		// System.out.println("testSize " + tests.size());
-		// System.out.println("ramdom double " + Randomness.nextDouble());
-		// System.out.println("1/testSize " + 1.0 / tests.size() + " testSzie "
-		// + tests.size());
-		// System.out.println("1/high " + 1.0 /
-		// Properties.HIGH_MUTATION_PROBOBILITY);
-
-		// judge whose length is long
-		int iterationCount;
-		if (parent.size() <= bestMutant.size()) {
-			iterationCount = parent.size();
-		} else {
-			iterationCount = bestMutant.size();
-		}
-		for (int i = 0; i < iterationCount; i++) {
-			// take bites from best mutant
-			if (Randomness.nextDouble() <= ((1.0 / tests.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY))) {
-				T fromMutant = chromosomebestMutant.tests.get(i);
-				T cloneTest = (T) fromMutant.clone();
-				tests.add(cloneTest);
-			} else {
-				T fromParent = chromosomeParent.tests.get(i);
-				T cloneParent = (T) fromParent.clone();
-				tests.add(cloneParent);
-			}
-		}
-		// System.out.println("AferTestSize "+tests.size());
-		// System.out.println("parentFitness "+chromosomeParent.getFitness()+"
-		// bestMutantFitness "+chromosomebestMutant.getFitness()+" afterCorss
-		// "+tests.get(0).getFitness());
-		this.setChanged(true);
-	}
-
 	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {

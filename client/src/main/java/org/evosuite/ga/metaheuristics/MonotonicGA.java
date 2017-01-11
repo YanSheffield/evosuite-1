@@ -85,7 +85,6 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void evolve() {
-		LoggingUtils.getEvoLogger().info("Enter Envole++");
 		List<T> newGeneration = new ArrayList<T>();
 
 		// Elitism

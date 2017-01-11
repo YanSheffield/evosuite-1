@@ -69,45 +69,6 @@ public class NullIntegerSystemTest extends SystemTestBase {
 
 //		Assert.assertEquals("Wrong number of goals: ", 3, goals);
 //		Assert.assertEquals("Non-optimal coverage: ", 1d, best.getCoverage(), 0.001);
-//		List<Integer> changeBite = new ArrayList<>();
-//		Set<Integer> changeBite = new HashSet<>();
-// 		for(int i = 0;i<5;i++){
-//		int randomNum = ThreadLocalRandom.current().nextInt(0, 10 + 1);
-//		changeBite.add(randomNum);
-//		
-//		}
-//		while(changeBite.size()<5){
-//			int randomNum = ThreadLocalRandom.current().nextInt(0, 10 + 1);
-//			changeBite.add(randomNum);
-//	}
-//		System.out.println(changeBite);
-//		for(int i:changeBite){
-//			System.out.println("i"+i);
-//		}
-//	public static void main(String[] args) {
-////		System.out.println(bia());
-//		makelist();
-//	}
-////	
-//	public static int getBinomial(int n, double p) {
-//		  int x = 0;
-//		  for(int i = 0; i < n; i++) {
-//		    if(Math.random() < p)
-//		      x++;
-//		  }
-//		  return x;
-//		}
-//	public static int bia(){
-//		BinomialDistribution bi = new BinomialDistribution(9,1d/3d);
-//		return bi.sample();
-//	}
-	
-//	public static <T> void makelist(T...args){
-//		System.out.println(args);
-//		if (args==null) {
-//			System.out.println("Null");
-//		}
-//	}
 }
 	
 }
