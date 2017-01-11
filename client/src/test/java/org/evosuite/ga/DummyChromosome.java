@@ -109,14 +109,9 @@ public class DummyChromosome extends Chromosome {
 	}
 
 	@Override
-	public void uniformCrossOver(Chromosome parent1,Chromosome parent2) throws ConstructionFailedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void uniformCrossOver(Chromosome bestMutant, int iteration, String s) throws ConstructionFailedException {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

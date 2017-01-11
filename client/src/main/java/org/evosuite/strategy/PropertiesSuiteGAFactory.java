@@ -186,6 +186,9 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
         case LAMBDAGA:
         	logger.info("Choose search algorithm: Lambda GA");
         	return new LambdaGA<TestSuiteChromosome>(factory);
+        case ONEPLUSLAMBDAEA:
+        	logger.info("Choose search algorithm: One plus Lambda EA");
+        	return new LambdaGA<TestSuiteChromosome>(factory);
         case SPEA2:
             logger.info("Chosen search algorithm: SPEA2");
             return new SPEA2<TestSuiteChromosome>(factory);

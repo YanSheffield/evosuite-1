@@ -305,11 +305,9 @@ public abstract class Chromosome implements Comparable<Chromosome>, Serializable
 	 */
 	public abstract void crossOver(Chromosome other, int position1, int position2)
 			throws ConstructionFailedException;
-
-	public abstract void uniformCrossOver(Chromosome parent1, Chromosome parent2)
-			throws ConstructionFailedException;
 	
-	public abstract void uniformCrossOver(Chromosome bestMutant,int iteration,String s) throws ConstructionFailedException;
+	public abstract void uniformCrossOver(Chromosome bestMutant,int iteration,String s) 
+			throws ConstructionFailedException;
 	
 	
 	

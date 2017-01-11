@@ -51,14 +51,10 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		System.out.println("---bestMutant "+bestMutant.getFitness());
 		// uniform crossover phrase
 		List<T> crossoverOffspring = new ArrayList<T>();
-		T copyParent = (T) parent.clone();
-		T copyBestMutant = (T) bestMutant.clone();
+
 		while (!isNextPopulationFull(crossoverOffspring)) {
 			try {
 				crossoverFunction.crossOver(parent, bestMutant);
-				System.out.println("(("+parent.equals(copyParent));
-				System.out.println("&&"+bestMutant.equals(copyBestMutant));
-				System.out.println("&&"+copyBestMutant.equals(copyBestMutant));
 				if (parent.size() < bestMutant.size()) {
 					crossoverOffspring.add(parent);
 				} else {
@@ -81,9 +77,6 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		}
 		updateFitnessFunctionsAndValues();
 		currentIteration++;
-		
-		System.out.println("--bestCorssover" + bestCrossoverOffspring.getFitness());
-		System.out.println("population(0) "+population.get(0).getFitness());
 	}
 
 	@Override
@@ -115,7 +108,7 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			evolve();
 			applyLocalSearch();
 			updateFitnessFunctionsAndValues();
-//
+
 			this.notifyIteration();
 		}
 		updateBestIndividualFromArchive();

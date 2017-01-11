@@ -216,12 +216,6 @@ public class NSGAChromosome extends Chromosome
 		
 	}
 
-	@Override
-	public void uniformCrossOver(Chromosome parent1, Chromosome parent2) throws ConstructionFailedException {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 	@Override
@@ -229,12 +223,4 @@ public class NSGAChromosome extends Chromosome
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-
-//	@Override
-//	public void mutateWithHighProbability() {
-//		// TODO Auto-generated method stub
-//		
-//	}
 }
