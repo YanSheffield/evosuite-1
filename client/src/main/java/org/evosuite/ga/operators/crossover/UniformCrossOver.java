@@ -17,14 +17,15 @@ public class UniformCrossOver extends CrossOverFunction<Chromosome>{
 		
 		int parentSize = parent1.size();
 		int bestMutantSize = bestMutant.size();
-		String m = "mutant";
-		String p = "parent";
+		String identifyMutant = "mutant";
+		String identifyParent = "parent";
 		Chromosome tparent = parent1.clone();
 		Chromosome tbestMutant = bestMutant.clone();
-		if(parentSize <= bestMutantSize){
-			tparent.uniformCrossOver(tbestMutant,parentSize,m);
+		
+		if(parentSize < bestMutantSize){
+			tparent.uniformCrossOver(tbestMutant,identifyMutant);
 		}else {
-			tbestMutant.uniformCrossOver(tparent,bestMutantSize,p);
+			tbestMutant.uniformCrossOver(tparent,identifyParent);
 		}
 		
 	}

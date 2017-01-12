@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -182,18 +183,17 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		this.setChanged(true);
 	}
 
-	public void uniformCrossOver(Chromosome other, int shorterSize, String s) throws ConstructionFailedException {
+	public void uniformCrossOver(Chromosome other, String s) throws ConstructionFailedException {
 		if (!(other instanceof AbstractTestSuiteChromosome<?>)) {
 			throw new IllegalArgumentException(
 					"AbstractTestSuiteChromosome.crossOver() called with parameter of unsupported type "
 							+ other.getClass());
 		}
-
 		double probilityBitesFromMutant = (1.0 / tests.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY);
 
 		AbstractTestSuiteChromosome<T> chromosome = (AbstractTestSuiteChromosome<T>) other;
-		
-		for (int i = 0; i < shorterSize; i++) {
+
+		for (int i = 0; i < tests.size(); i++) {
 			// bites from best mutant
 			if (s.equals("mutant")) {// test 是 parent
 				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
@@ -202,15 +202,30 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 					T clonedTest = (T) otherTest.clone();
 					tests.add(clonedTest);
 				}
-			} else {
+			} else {// if the basis is mutant itself,the probability of
+					// obtaining the bits from parent is (1-pro).
+				// That is,the probability of change.
 				if (Randomness.nextDouble() <= 1 - probilityBitesFromMutant) {
 					tests.remove(i);
-					T otherTest = chromosome.tests.get(i);// 换成 parent
+					T otherTest = chromosome.tests.get(i);// 换成 parent,
 					T clonedTest = (T) otherTest.clone();
 					tests.add(clonedTest);
 				}
 			}
 		}
+		//the length between best mutant and parent is not identical.Obtaining 
+		//the extra part base on crossover probability
+		for(int i = tests.size(); i< other.size();i++){
+			if(s.equals("mutant")){
+				if (Randomness.nextDouble() <= probilityBitesFromMutant){
+					tests.add(chromosome.tests.get(i));
+				}
+			}else {
+				if (Randomness.nextDouble() <= 1-probilityBitesFromMutant){
+					tests.add(chromosome.tests.get(i));
+				}
+			}
+		}		
 	}
 
 	/** {@inheritDoc} */

@@ -30,16 +30,19 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	protected void evolve() {
 
 		List<T> mutants = new ArrayList<T>();
-
+		
 		T parent = (T) population.get(0).clone();
 		// control the number of offspring
 		while (!isNextPopulationFull(mutants)) {
 			// clone offspring from parent
 			T MutationOffspring = (T) parent.clone();
+//			System.out.println("before mutation size "+MutationOffspring.size());
 			// operate mutation before crossover operation
 			notifyMutation(MutationOffspring);
 			MutationOffspring.mutateWithHighProbability();
 			// newGeneration = getBestIndividuals();
+//			System.out.println("After mutation size "+MutationOffspring.size());
+//			System.out.println("--"+MutationOffspring.equals(parent));
 			mutants.add(MutationOffspring);
 		}
 		population = mutants;
@@ -51,11 +54,13 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		List<T> crossoverOffspring = new ArrayList<T>();
 
 		while (!isNextPopulationFull(crossoverOffspring)) {
-			try {
-				crossoverFunction.crossOver(parent, bestMutant);
+			try {			
+				//question one. The number of test case
 				if (parent.size() < bestMutant.size()) {
+					crossoverFunction.crossOver(parent, bestMutant);
 					crossoverOffspring.add(parent);
 				} else {
+					crossoverFunction.crossOver(parent, bestMutant);
 					crossoverOffspring.add(bestMutant);
 				}
 			} catch (ConstructionFailedException e) {

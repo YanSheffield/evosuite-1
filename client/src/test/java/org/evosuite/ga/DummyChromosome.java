@@ -109,7 +109,7 @@ public class DummyChromosome extends Chromosome {
 	}
 
 	@Override
-	public void uniformCrossOver(Chromosome bestMutant, int iteration, String s) throws ConstructionFailedException {
+	public void uniformCrossOver(Chromosome bestMutant, String identify) throws ConstructionFailedException {
 		// TODO Auto-generated method stub
 		
 	}
