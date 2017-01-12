@@ -740,7 +740,12 @@ public class TestChromosome extends ExecutableChromosome {
 	}
 
 	@Override
-	public void uniformCrossOver(Chromosome bestMutant, String identify) throws ConstructionFailedException {
+	public void uniformCrossOver(Chromosome bestMutant, String identify) throws ConstructionFailedException 
+	{
+		
+	}
+	public void uniformCrossOver(Chromosome bestMutant, int iteration, String s) throws ConstructionFailedException {
+		// TODO Auto-generated method stub
 		
 	}
 
