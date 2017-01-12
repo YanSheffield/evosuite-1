@@ -45,7 +45,7 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		
 		Properties.TARGET_CLASS = targetClass;
 		
-		Properties.ALGORITHM = Algorithm.ONEPLUSLAMBDAEA;
+		Properties.ALGORITHM = Algorithm.LAMBDAGA;
 		Properties.CRITERION = new Criterion[] {  Criterion.LINE, Criterion.BRANCH, Criterion.EXCEPTION, Criterion.WEAKMUTATION, Criterion.OUTPUT, Criterion.METHOD, Criterion.METHODNOEXCEPTION, Criterion.CBRANCH };
 
 		String[] command = new String[] { "-generateSuite", "-class", targetClass };

@@ -8,6 +8,7 @@ import org.evosuite.testsuite.TestSuiteChromosome;
 
 public class UniformCrossOver extends CrossOverFunction<Chromosome>{
 
+	private static final long serialVersionUID = 2981387570766261795L;
 	
 	@Override
 	public void crossOver(Chromosome parent1, Chromosome bestMutant) throws ConstructionFailedException {
@@ -19,13 +20,15 @@ public class UniformCrossOver extends CrossOverFunction<Chromosome>{
 		int bestMutantSize = bestMutant.size();
 		String identifyMutant = "mutant";
 		String identifyParent = "parent";
+		
 		Chromosome tparent = parent1.clone();
 		Chromosome tbestMutant = bestMutant.clone();
 		
 		if(parentSize < bestMutantSize){
-			tparent.uniformCrossOver(tbestMutant,identifyMutant);
+//			tparent.uniformCrossOver(tbestMutant,identifyMutant);
+			parent1.uniformCrossOver(tbestMutant, identifyMutant);
 		}else {
-			tbestMutant.uniformCrossOver(tparent,identifyParent);
+			bestMutant.uniformCrossOver(tparent,identifyParent);
 		}
 		
 	}
