@@ -189,6 +189,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 					"AbstractTestSuiteChromosome.crossOver() called with parameter of unsupported type "
 							+ other.getClass());
 		}
+		
 		double probilityBitesFromMutant = (1.0 / tests.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY);
 
 		AbstractTestSuiteChromosome<T> chromosome = (AbstractTestSuiteChromosome<T>) other;
@@ -200,7 +201,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 					tests.remove(i);
 					T otherTest = chromosome.tests.get(i);// 换成 mutant
 					T clonedTest = (T) otherTest.clone();
-					tests.add(clonedTest);
+					tests.add(i,clonedTest);
 				}
 			} else {// if the basis is mutant itself,the probability of
 					// obtaining the bits from parent is (1-pro).
@@ -209,7 +210,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 					tests.remove(i);
 					T otherTest = chromosome.tests.get(i);// 换成 parent,
 					T clonedTest = (T) otherTest.clone();
-					tests.add(clonedTest);
+					tests.add(i,clonedTest);
 				}
 			}
 		}
@@ -222,7 +223,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 				}
 			}else {
 				if (Randomness.nextDouble() <= 1-probilityBitesFromMutant){
-					tests.add(chromosome.tests.get(i));
+				tests.add(chromosome.tests.get(i));
 				}
 			}
 		}		
