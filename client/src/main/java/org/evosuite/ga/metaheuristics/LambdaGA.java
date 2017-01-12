@@ -15,8 +15,8 @@ import org.evosuite.testsuite.TestSuiteChromosome;
 import org.evosuite.utils.LoggingUtils;
 
 public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
-	// T TestSuitChromesome
-	private static final long serialVersionUID = 5229089847512798127L;
+	// what is used for??
+	private static final long serialVersionUID = 529089847512798127L;
 	// new TestSuiteChromosomeFactory(new ArchiveTestChromosomeFactory());
 	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LambdaGA.class);
 
@@ -30,16 +30,19 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	protected void evolve() {
 
 		List<T> mutants = new ArrayList<T>();
-
+		
 		T parent = (T) population.get(0).clone();
 		// control the number of offspring
 		while (!isNextPopulationFull(mutants)) {
 			// clone offspring from parent
 			T MutationOffspring = (T) parent.clone();
+//			System.out.println("before mutation size "+MutationOffspring.size());
 			// operate mutation before crossover operation
 			notifyMutation(MutationOffspring);
 			MutationOffspring.mutateWithHighProbability();
 			// newGeneration = getBestIndividuals();
+//			System.out.println("After mutation size "+MutationOffspring.size());
+//			System.out.println("--"+MutationOffspring.equals(parent));
 			mutants.add(MutationOffspring);
 		}
 		population = mutants;
@@ -47,17 +50,17 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		updateFitnessFunctionsAndValues();
 		calculateFitnessAndSortPopulation();
 		T bestMutant = getBestIndividual();
-		System.out.println("Parent "+parent.getFitness());
-		System.out.println("---bestMutant "+bestMutant.getFitness());
 		// uniform crossover phrase
 		List<T> crossoverOffspring = new ArrayList<T>();
 
 		while (!isNextPopulationFull(crossoverOffspring)) {
-			try {
-				crossoverFunction.crossOver(parent, bestMutant);
+			try {			
+				//question one. The number of test case
 				if (parent.size() < bestMutant.size()) {
+					crossoverFunction.crossOver(parent, bestMutant);
 					crossoverOffspring.add(parent);
 				} else {
+					crossoverFunction.crossOver(parent, bestMutant);
 					crossoverOffspring.add(bestMutant);
 				}
 			} catch (ConstructionFailedException e) {

@@ -113,7 +113,7 @@ public class SystemTestBase {
 		Properties.JUNIT_TESTS = false;
 		Properties.PLOT = false;
 
-//		Properties.STOPPING_CONDITION = StoppingCondition.MAXSTATEMENTS;
+		Properties.STOPPING_CONDITION = StoppingCondition.MAXSTATEMENTS;
 		Properties.SEARCH_BUDGET = 30000;
 
 		Properties.GLOBAL_TIMEOUT = 120;

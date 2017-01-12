@@ -19,14 +19,6 @@
  */
 package org.evosuite.basic;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
-
-import org.apache.commons.math3.distribution.BinomialDistribution;
 import org.evosuite.EvoSuite;
 import org.evosuite.Properties;
 import org.evosuite.Properties.Algorithm;
@@ -53,7 +45,7 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		
 		Properties.TARGET_CLASS = targetClass;
 		
-		Properties.ALGORITHM = Algorithm.LAMBDAGA;
+		Properties.ALGORITHM = Algorithm.ONEPLUSLAMBDAEA;
 		Properties.CRITERION = new Criterion[] {  Criterion.LINE, Criterion.BRANCH, Criterion.EXCEPTION, Criterion.WEAKMUTATION, Criterion.OUTPUT, Criterion.METHOD, Criterion.METHODNOEXCEPTION, Criterion.CBRANCH };
 
 		String[] command = new String[] { "-generateSuite", "-class", targetClass };
@@ -63,7 +55,7 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		GeneticAlgorithm<?> ga = getGAFromResult(result);
 		TestSuiteChromosome best = (TestSuiteChromosome) ga.getBestIndividual();
 		System.out.println("EvolvedTestSuite:\n" + best);
-
+		
 		int goals = TestGenerationStrategy.getFitnessFactories().get(0).getCoverageGoals().size(); // assuming single fitness function
 		
 
