@@ -113,20 +113,16 @@ public class DummyChromosome extends Chromosome {
 
 	@Override
 	public void uniformCrossOver(Chromosome other, String identify) throws ConstructionFailedException {
-		System.out.println("Enter 111");
 		double probilityBitesFromMutant = (1.0 / values.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY);
-		System.out.println("values "+values);
 		DummyChromosome chromosome = (DummyChromosome) other;
-
+		//初始化对象的的时候已经给 value 值了，这个对象在调用其它方法包含初始化
+		//的时候，在其他方法里都默认为初始化的值
 		for (int i = 0; i < values.size(); i++) {
 			
 			if (identify.equals("mutant")) {		
 				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
-					System.out.println("i value "+i);
 					values.remove(i);
-					System.out.println("remove "+values);
 					values.add(i,chromosome.values.get(i));
-					System.out.println("add "+values);
 				}
 			} else {
 				if (Randomness.nextDouble() <= 1 - probilityBitesFromMutant) {
@@ -145,9 +141,7 @@ public class DummyChromosome extends Chromosome {
 					values.add(chromosome.values.get(i));
 				}
 			}
-		}
-//		System.out.println("real value "+values);
-		System.out.println("getGenr "+getGenes());
+		};
 		this.setChanged(true);
 	}
 
