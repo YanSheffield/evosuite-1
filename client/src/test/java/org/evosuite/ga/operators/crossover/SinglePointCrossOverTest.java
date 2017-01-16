@@ -21,10 +21,8 @@ public class SinglePointCrossOverTest {
 	    DummyChromosome offspring2 = new DummyChromosome(parent2);
 
 	    xover.crossOver(offspring1, offspring2);
-	    System.out.println("1 "+offspring1.getGenes());
-	    System.out.println("2 "+offspring2.getGenes());
-//	    assertEquals(Arrays.asList(1, 2, 6), offspring1.getGenes());
-//	    assertEquals(Arrays.asList(5, 3, 4), offspring2.getGenes());
+	    assertEquals(Arrays.asList(1, 2, 6), offspring1.getGenes());
+	    assertEquals(Arrays.asList(5, 3, 4), offspring2.getGenes());
 	}
 
 }
