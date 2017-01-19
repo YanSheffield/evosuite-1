@@ -45,9 +45,6 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		
 		Properties.TARGET_CLASS = targetClass;
 		
-		Properties.ALGORITHM = Algorithm.LAMBDAGA;
-		Properties.CRITERION = new Criterion[] {  Criterion.LINE, Criterion.BRANCH, Criterion.EXCEPTION, Criterion.WEAKMUTATION, Criterion.OUTPUT, Criterion.METHOD, Criterion.METHODNOEXCEPTION, Criterion.CBRANCH };
-
 		String[] command = new String[] { "-generateSuite", "-class", targetClass };
 
 		Object result = evosuite.parseCommandLine(command);
@@ -58,9 +55,8 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		
 		int goals = TestGenerationStrategy.getFitnessFactories().get(0).getCoverageGoals().size(); // assuming single fitness function
 		
-
-//		Assert.assertEquals("Wrong number of goals: ", 3, goals);
-//		Assert.assertEquals("Non-optimal coverage: ", 1d, best.getCoverage(), 0.001);
+		Assert.assertEquals("Wrong number of goals: ", 3, goals);
+		Assert.assertEquals("Non-optimal coverage: ", 1d, best.getCoverage(), 0.001);
 }
 	
 }

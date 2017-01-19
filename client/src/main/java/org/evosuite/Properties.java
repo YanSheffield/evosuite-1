@@ -108,7 +108,7 @@ public class Properties {
 	public static boolean EVOSUITE_USE_UISPEC = false;
 
 	/** Constant <code>MAKE_ACCESSIBLE=true</code> */
-    @Deprecated
+	@Deprecated
 	@Parameter(key = "make_accessible", group = "TestCreation", description = "Change default package rights to public package rights")
 	public static boolean MAKE_ACCESSIBLE = false;
 
@@ -123,7 +123,7 @@ public class Properties {
 	/** Constant <code>RESET_STATIC_FINAL_FIELDS =false</code> */
 	@Parameter(key = "reset_static_final_fields", group = "Test Creation", description = "Remove the static modifier in target fields")
 	public static boolean RESET_STATIC_FINAL_FIELDS = true;
-	
+
 	@Parameter(key = "reset_static_field_gets", group = "Test Creation", description = "Call static constructors also after each static field was read")
 	public static boolean RESET_STATIC_FIELD_GETS = false;
 
@@ -133,7 +133,6 @@ public class Properties {
 	@Parameter(key = "reset_all_classes_during_assertion_generation", group = "Test Creation", description = "Test Generation does not apply the selective method of selection of class re-initalization")
 	public static boolean RESET_ALL_CLASSES_DURING_ASSERTION_GENERATION = true;
 
-	
 	/** Constant <code>RESET_STANDARD_STREAMS =false</code> */
 	@Parameter(key = "reset_standard_streams", group = "Test Creation", description = "Restore System.out, System.in and DebugGraphics.logStream after test execution")
 	public static boolean RESET_STANDARD_STREAMS = false;
@@ -187,7 +186,7 @@ public class Properties {
 	public static int DYNAMIC_POOL_SIZE = 50;
 
 	@Parameter(key = "p_special_type_call", group = "Test Creation", description = "Probability of using a non-standard call on a special case (collection/numeric)")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_SPECIAL_TYPE_CALL = 0.05;
 
 	/** Constant <code>OBJECT_POOL=0.0</code> */
@@ -211,12 +210,12 @@ public class Properties {
 	@Parameter(key = "string_length", group = "Test Creation", description = "Maximum length of randomly generated strings")
 	public static int STRING_LENGTH = 20;
 
-    @Parameter(key = "max_string", group = "Test Creation", description = "Maximum length of strings in assertions")
-    @IntValue(min = 1, max = 32767) // String literals may not be longer than 32767
-    public static int MAX_STRING = 1000;
+	@Parameter(key = "max_string", group = "Test Creation", description = "Maximum length of strings in assertions")
+	@IntValue(min = 1, max = 32767) // String literals may not be longer than
+									// 32767
+	public static int MAX_STRING = 1000;
 
-
-    /** Constant <code>EPSILON=0.001</code> */
+	/** Constant <code>EPSILON=0.001</code> */
 	@Parameter(key = "epsilon", group = "Test Creation", description = "Epsilon for floats in local search")
 	@Deprecated
 	// does not seem to be used anywhere
@@ -242,7 +241,7 @@ public class Properties {
 	@Parameter(key = "max_array", group = "Test Creation", description = "Maximum length of randomly generated arrays")
 	public static int MAX_ARRAY = 10;
 
-    /** Constant <code>MAX_ATTEMPTS=1000</code> */
+	/** Constant <code>MAX_ATTEMPTS=1000</code> */
 	@Parameter(key = "max_attempts", group = "Test Creation", description = "Number of attempts when generating an object before giving up")
 	public static int MAX_ATTEMPTS = 1000;
 
@@ -302,18 +301,22 @@ public class Properties {
 	public static int INSERTION_SCORE_PARAMETER = 1;
 
 	@Parameter(key = "consider_main_methods", group = "Test Creation", description = "Generate unit tests for 'main(String[] args)' methods as well")
-	public static boolean CONSIDER_MAIN_METHODS = true; //should be on by default, otherwise unnecessary lower coverage: up to user if wants to skip them
+	public static boolean CONSIDER_MAIN_METHODS = true; // should be on by
+														// default, otherwise
+														// unnecessary lower
+														// coverage: up to user
+														// if wants to skip them
 
 	@Parameter(key = "headless_mode", group = "Test Generation", description = "Run Java in AWT Headless mode")
 	public static boolean HEADLESS_MODE = true;
 
-    @Parameter(key = "p_reflection_on_private", group = "Test Creation", description = "Probability [0,1] of using reflection to set private fields or call private methods")
-    @DoubleValue(min = 0.0, max = 1.0)
-    public static double P_REFLECTION_ON_PRIVATE = 0.0; // Optimal value: 0.5
+	@Parameter(key = "p_reflection_on_private", group = "Test Creation", description = "Probability [0,1] of using reflection to set private fields or call private methods")
+	@DoubleValue(min = 0.0, max = 1.0)
+	public static double P_REFLECTION_ON_PRIVATE = 0.0; // Optimal value: 0.5
 
-    @Parameter(key = "reflection_start_percent", group = "Test Creation", description = "Percentage [0,1] of search budget after which reflection fields/methods handling is activated")
-    @DoubleValue(min = 0.0, max = 1.0)
-    public static double REFLECTION_START_PERCENT = 0.8;
+	@Parameter(key = "reflection_start_percent", group = "Test Creation", description = "Percentage [0,1] of search budget after which reflection fields/methods handling is activated")
+	@DoubleValue(min = 0.0, max = 1.0)
+	public static double REFLECTION_START_PERCENT = 0.8;
 
 	@Parameter(key = "p_functional_mocking", group = "Test Creation", description = "Probability [0,1] of using functional mocking (eg Mockito) when creating object instances")
 	@DoubleValue(min = 0.0, max = 1.0)
@@ -330,18 +333,16 @@ public class Properties {
 	@DoubleValue(min = 1)
 	public static int FUNCTIONAL_MOCKING_INPUT_LIMIT = 5;
 
-
 	// ---------------------------------------------------------------
 	// Search algorithm
 	public enum Algorithm {
-		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2,LAMBDAGA,ONEPLUSLAMBDAEA
+		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2, LAMBDAGA, ONEPLUSLAMBDAEA
 	}
 
 	// MOSA PROPERTIES
 	public enum RankingType {
 		// Preference sorting is the ranking strategy proposed in
-		PREFERENCE_SORTING, 
-		FAST_NON_DOMINATED_SORTING
+		PREFERENCE_SORTING, FAST_NON_DOMINATED_SORTING
 	}
 
 	@Parameter(key = "ranking_type", group = "Runtime", description = "type of ranking to use in MOSA")
@@ -361,9 +362,11 @@ public class Properties {
 
 	/** Constant <code>CHECK_PARENTS_LENGTH=false</code> */
 	@Parameter(key = "check_parents_length", group = "Search Algorithm", description = "Check length against length of parents")
-	public static boolean CHECK_PARENTS_LENGTH = false; // note, based on STVR experiments
+	public static boolean CHECK_PARENTS_LENGTH = false; // note, based on STVR
+														// experiments
 
-	// @Parameter(key = "check_rank_length", group = "Search Algorithm", description = "Use length in rank selection")
+	// @Parameter(key = "check_rank_length", group = "Search Algorithm",
+	// description = "Use length in rank selection")
 	// public static boolean CHECK_RANK_LENGTH = false;
 
 	/** Constant <code>PARENT_CHECK=true</code> */
@@ -377,10 +380,10 @@ public class Properties {
 	@Parameter(key = "chop_max_length", group = "Search Algorithm", description = "Chop statements after exception if length has reached maximum")
 	public static boolean CHOP_MAX_LENGTH = true;
 
-	//----------- DSE, which is a special case of LS ---------------
+	// ----------- DSE, which is a special case of LS ---------------
 
 	@Parameter(key = "dse_probability", group = "DSE", description = "Probability used to specify when to use DSE instead of regular LS when LS is applied")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double DSE_PROBABILITY = 0.5;
 
 	/** Constant <code>DSE_CONSTRAINT_SOLVER_TIMEOUT_MILLIS=0</code> */
@@ -400,7 +403,7 @@ public class Properties {
 	public static int DSE_CONSTRAINT_LENGTH = 100000;
 
 	@Parameter(key = "dse_constant_probability", group = "DSE", description = "Probability with which to use constants from the constraints when resetting variables during search")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double DSE_CONSTANT_PROBABILITY = 0.5;
 
 	/** Constant <code>DSE_VARIABLE_RESETS=1</code> */
@@ -439,7 +442,6 @@ public class Properties {
 	@Parameter(key = "cvc4_path", group = "DSE", description = "Indicates the path to the CVC4 solver")
 	public static String CVC4_PATH = null;
 
-
 	// --------- LS ---------
 
 	/** Constant <code>LOCAL_SEARCH_RATE=-1</code> */
@@ -447,7 +449,7 @@ public class Properties {
 	public static int LOCAL_SEARCH_RATE = -1;
 
 	@Parameter(key = "local_search_probability", group = "Local Search", description = "Probability of applying local search at every X generation")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double LOCAL_SEARCH_PROBABILITY = 1.0;
 
 	@Deprecated
@@ -455,7 +457,11 @@ public class Properties {
 	public static boolean LOCAL_SEARCH_SELECTIVE = false;
 
 	@Parameter(key = "local_search_selective_primitives", group = "Local Search", description = "Only check primitives for selective LS")
-	public static boolean LOCAL_SEARCH_SELECTIVE_PRIMITIVES = false; //TODO what is this? unclear
+	public static boolean LOCAL_SEARCH_SELECTIVE_PRIMITIVES = false; // TODO
+																		// what
+																		// is
+																		// this?
+																		// unclear
 
 	@Parameter(key = "local_search_expand_tests", group = "Local Search", description = "Expand test cases before applying local search such that each primitive is used only once")
 	public static boolean LOCAL_SEARCH_EXPAND_TESTS = true;
@@ -464,7 +470,9 @@ public class Properties {
 	public static boolean LOCAL_SEARCH_ENSURE_DOUBLE_EXECUTION = true;
 
 	@Parameter(key = "local_search_restore_coverage", group = "Local Search", description = "Add tests that cover branches already covered in the past")
-	public static boolean LOCAL_SEARCH_RESTORE_COVERAGE = false; // Not needed with archive
+	public static boolean LOCAL_SEARCH_RESTORE_COVERAGE = false; // Not needed
+																	// with
+																	// archive
 
 	@Parameter(key = "local_search_adaptation_rate", group = "Local Search", description = "Parameter used to adapt at runtime the probability of applying local search")
 	public static double LOCAL_SEARCH_ADAPTATION_RATE = 2.0;
@@ -475,8 +483,7 @@ public class Properties {
 	public enum LocalSearchBudgetType {
 		STATEMENTS, TESTS,
 		/** Time expressed in seconds */
-		TIME,
-		SUITES, FITNESS_EVALUATIONS
+		TIME, SUITES, FITNESS_EVALUATIONS
 	}
 
 	/** Constant <code>LOCAL_SEARCH_BUDGET_TYPE</code> */
@@ -499,7 +506,7 @@ public class Properties {
 	@Parameter(key = "local_search_references", group = "Local Search", description = "Perform local search on reference types")
 	public static boolean LOCAL_SEARCH_REFERENCES = true;
 
-	//--------------------------
+	// --------------------------
 
 	/** Constant <code>CROSSOVER_RATE=0.75</code> */
 	@Parameter(key = "crossover_rate", group = "Search Algorithm", description = "Probability of crossover")
@@ -514,11 +521,11 @@ public class Properties {
 	@Parameter(key = "mutation_rate", group = "Search Algorithm", description = "Probability of mutation")
 	@DoubleValue(min = 0.0, max = 1.0)
 	public static double MUTATION_RATE = 0.75;
-	
+
 	/** Constant <code>MUTATION_RATE=0.75</code> */
 	@Parameter(key = "high_mutation_probability", group = "Search Algorithm", description = "It is applied on lambda GA only")
 	@DoubleValue(min = 0.0, max = 1.0)
-	public static double HIGH_MUTATION_PROBOBILITY = 1d/3d;
+	public static double HIGH_MUTATION_PROBOBILITY = 1d / 3d;
 
 	/** Constant <code>NUMBER_OF_MUTATIONS=1</code> */
 	@Parameter(key = "number_of_mutations", group = "Search Algorithm", description = "Number of single mutations applied on an individual when a mutation event occurs")
@@ -526,12 +533,12 @@ public class Properties {
 
 	/** Constant <code>P_TEST_INSERTION=0.1</code> */
 	@Parameter(key = "p_test_insertion", group = "Search Algorithm", description = "Initial probability of inserting a new test in a test suite")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_TEST_INSERTION = 0.1;
 
 	/** Constant <code>P_STATEMENT_INSERTION=0.5</code> */
 	@Parameter(key = "p_statement_insertion", group = "Search Algorithm", description = "Initial probability of inserting a new statement in a test case")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_STATEMENT_INSERTION = 0.5;
 
 	/** Constant <code>P_CHANGE_PARAMETER=0.1</code> */
@@ -541,17 +548,17 @@ public class Properties {
 
 	/** Constant <code>P_TEST_DELETE=1d / 3d</code> */
 	@Parameter(key = "p_test_delete", group = "Search Algorithm", description = "Probability of deleting statements during mutation")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_TEST_DELETE = 1d / 3d;
 
 	/** Constant <code>P_TEST_CHANGE=1d / 3d</code> */
 	@Parameter(key = "p_test_change", group = "Search Algorithm", description = "Probability of changing statements during mutation")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_TEST_CHANGE = 1d / 3d;
 
 	/** Constant <code>P_TEST_INSERT=1d / 3d</code> */
 	@Parameter(key = "p_test_insert", group = "Search Algorithm", description = "Probability of inserting new statements during mutation")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double P_TEST_INSERT = 1d / 3d;
 
 	/** Constant <code>KINCOMPENSATION=1.0</code> */
@@ -590,8 +597,7 @@ public class Properties {
 	public static PopulationLimit POPULATION_LIMIT = PopulationLimit.INDIVIDUALS;
 
 	/** Constant <code>WRITE_INDIVIDUALS=false</code> */
-	@Parameter(key = "write_individuals", group = "Search Algorithm",
-	    description = "Write to a file all fitness values of each individual on each iteration of a GA")
+	@Parameter(key = "write_individuals", group = "Search Algorithm", description = "Write to a file all fitness values of each individual on each iteration of a GA")
 	public static boolean WRITE_INDIVIDUALS = false;
 
 	/** Constant <code>SEARCH_BUDGET=60</code> */
@@ -611,8 +617,8 @@ public class Properties {
 
 	public enum StoppingCondition {
 		MAXSTATEMENTS, MAXTESTS,
-        /** Max time in seconds */ MAXTIME,
-        MAXGENERATIONS, MAXFITNESSEVALUATIONS, TIMEDELTA
+		/** Max time in seconds */
+		MAXTIME, MAXGENERATIONS, MAXFITNESSEVALUATIONS, TIMEDELTA
 	}
 
 	/** Constant <code>STOPPING_CONDITION</code> */
@@ -697,9 +703,9 @@ public class Properties {
 	@IntValue(min = 0)
 	public static int MINIMIZATION_TIMEOUT = 60;
 
-    @Parameter(key = "assertion_timeout", group = "Search Algorithm", description = "Seconds allowed for assertion generation at the end")
-    @IntValue(min = 0)
-    public static int ASSERTION_TIMEOUT = 60;
+	@Parameter(key = "assertion_timeout", group = "Search Algorithm", description = "Seconds allowed for assertion generation at the end")
+	@IntValue(min = 0)
+	public static int ASSERTION_TIMEOUT = 60;
 
     @Parameter(key="assertion_minimization_fallback", group = "Search Algorithm", description = "Percentage of tests expected to have assertions at fallback check time")
     public static double ASSERTION_MINIMIZATION_FALLBACK = 1/2d;
@@ -713,7 +719,9 @@ public class Properties {
 
 	@Parameter(key = "write_junit_timeout", group = "Search Algorithm", description = "Seconds allowed to write on disk the generated JUnit files")
 	@IntValue(min = 0)
-	public static int WRITE_JUNIT_TIMEOUT = 60; //Note: we need it, as we currently first run the tests before we write them
+	public static int WRITE_JUNIT_TIMEOUT = 60; // Note: we need it, as we
+												// currently first run the tests
+												// before we write them
 
 	@Parameter(key = "carving_timeout", group = "Search Algorithm", description = "Seconds allowed for carving JUnit tests")
 	@IntValue(min = 0)
@@ -754,7 +762,7 @@ public class Properties {
 	@DoubleValue(min = 0.0, max = 1.0)
 	public static double EPSON = 0.01;
 
-	//----------------------------------------------------------------
+	// ----------------------------------------------------------------
 	// Continuous Test Generation
 
 	@Parameter(key = "ctg_memory", group = "Continuous Test Generation", description = "Total Memory (in MB) that CTG will use")
@@ -834,18 +842,15 @@ public class Properties {
 	};
 
 	/*
-	 * FIXME choose best schedule for default
-	 * Note: most likely we ll use this parameter only for testing/experiments.
-	 * Maven plugin will use the default, best one
+	 * FIXME choose best schedule for default Note: most likely we ll use this
+	 * parameter only for testing/experiments. Maven plugin will use the
+	 * default, best one
 	 */
 	@Parameter(key = "ctg_schedule", group = "Continuous Test Generation", description = "Schedule used to run jobs")
 	public static AvailableSchedule CTG_SCHEDULE = AvailableSchedule.BUDGET;
 
-
 	@Parameter(key = "ctg_extra_args", group = "Continuous Test Generation", description = "Extra '-D' arguments to pass to EvoSuite test generation processes")
 	public static String CTG_EXTRA_ARGS = null;
-
-
 
 	// ---------------------------------------------------------------
 	// Single branch mode
@@ -917,13 +922,15 @@ public class Properties {
 
 	@Parameter(key = "junit_check_on_separate_process", group = "Output", description = "Compile and run resulting JUnit test suite on a separate process")
 	@Deprecated
-	//this gives quite a few issues. and hopefully the problems it was aimed to fix are no longer
+	// this gives quite a few issues. and hopefully the problems it was aimed to
+	// fix are no longer
 	public static boolean JUNIT_CHECK_ON_SEPARATE_PROCESS = false;
 
 	@Parameter(key = "junit_suffix", group = "Output", description = "Suffix that is appended at each generated JUnit file name")
 	public static String JUNIT_SUFFIX = "_ESTest";
 
-	//WARN: do not change this value, as had to be hardcoded in quite a few places :( if really need to change it,
+	// WARN: do not change this value, as had to be hardcoded in quite a few
+	// places :( if really need to change it,
 	// all that code has to be changed as well
 	@Parameter(key = "scaffolding_suffix", group = "Output", description = "Suffix used to specify scaffolding files")
 	public static String SCAFFOLDING_SUFFIX = "scaffolding";
@@ -965,12 +972,11 @@ public class Properties {
 	@Parameter(key = "minimize_second_pass", group = "Output", description = "Perform a second minimization pass as the first one may retain subsumed tests")
 	public static boolean MINIMIZE_SECOND_PASS = true;
 
-    /** Constant <code>MINIMIZE_SORT=true</code> */
-    @Parameter(key = "minimize_sort", group = "Output", description = "Sort goals before Minimization")
-    public static boolean MINIMIZE_SORT = true;
+	/** Constant <code>MINIMIZE_SORT=true</code> */
+	@Parameter(key = "minimize_sort", group = "Output", description = "Sort goals before Minimization")
+	public static boolean MINIMIZE_SORT = true;
 
-
-    /** Constant <code>MINIMIZE_SKIP_COINCIDENTAL=true</code> */
+	/** Constant <code>MINIMIZE_SKIP_COINCIDENTAL=true</code> */
 	@Parameter(key = "minimize_skip_coincidental", group = "Output", description = "Minimize test suite after generation")
 	public static boolean MINIMIZE_SKIP_COINCIDENTAL = true;
 
@@ -988,7 +994,7 @@ public class Properties {
 	public static boolean LM_STRINGS = false;
 
 	/** Constant <code>MINIMIZE_STRINGS=true</code> */
-	@Parameter(key = "minimize_strings", group="Output", description = "Try to minimise strings by deleting non-printables. The parameter minimize_values must also be true,")
+	@Parameter(key = "minimize_strings", group = "Output", description = "Try to minimise strings by deleting non-printables. The parameter minimize_values must also be true,")
 	public static boolean MINIMIZE_STRINGS = true;
 
 	/** Constant <code>LM_SRC=false</code> */
@@ -1116,7 +1122,7 @@ public class Properties {
 
 	@Parameter(key = "new_statistics", group = "Output", description = "Use the new statistics backend on the master")
 	public static boolean NEW_STATISTICS = true;
-	
+
 	@Parameter(key = "ignore_missing_statistics", group = "Output", description = "Return an empty string for missing output variables")
 	public static boolean IGNORE_MISSING_STATISTICS = false;
 
@@ -1126,11 +1132,12 @@ public class Properties {
 	@Parameter(key = "double_precision", group = "Output", description = "Precision to use in double comparisons and assertions")
 	public static double DOUBLE_PRECISION = 0.01;
 
-	//@Parameter(key = "old_statistics", group = "Output", description = "Use the old statistics backend on the master")
-	//public static boolean OLD_STATISTICS = false;
+	// @Parameter(key = "old_statistics", group = "Output", description = "Use
+	// the old statistics backend on the master")
+	// public static boolean OLD_STATISTICS = false;
 
-    @Parameter(key = "validate_runtime_variables", group = "Output", description = "Validate runtime values before writing statistics")
-    public static boolean VALIDATE_RUNTIME_VARIABLES = true;
+	@Parameter(key = "validate_runtime_variables", group = "Output", description = "Validate runtime values before writing statistics")
+	public static boolean VALIDATE_RUNTIME_VARIABLES = true;
 
 	@Parameter(key = "serialize_ga", group = "Output", description = "Include the GA instance in the test generation result")
 	public static boolean SERIALIZE_GA = false;
@@ -1146,11 +1153,11 @@ public class Properties {
 	@Parameter(key = "timeline_interval", group = "Output", description = "Time interval in milliseconds for timeline statistics")
 	public static long TIMELINE_INTERVAL = 60 * 1000;
 
-    /** Constant <code>TIMELINE_INTERPOLATION=true</code> */
-    @Parameter(key = "timeline_interpolation", group = "Output", description = "Interpolate timeline values")
-    public static boolean TIMELINE_INTERPOLATION = true;
+	/** Constant <code>TIMELINE_INTERPOLATION=true</code> */
+	@Parameter(key = "timeline_interpolation", group = "Output", description = "Interpolate timeline values")
+	public static boolean TIMELINE_INTERPOLATION = true;
 
-    public enum OutputGranularity {
+	public enum OutputGranularity {
 		MERGED, TESTCASE
 	}
 
@@ -1183,26 +1190,25 @@ public class Properties {
 	public static boolean FILTER_SANDBOX_TESTS = false;
 
 	/** Constant <code>VIRTUAL_FS=false</code> */
-    @Parameter(key = "virtual_fs", group = "Sandbox", description = "Usa a virtual file system for all File I/O operations")
-    public static boolean VIRTUAL_FS = true;
+	@Parameter(key = "virtual_fs", group = "Sandbox", description = "Usa a virtual file system for all File I/O operations")
+	public static boolean VIRTUAL_FS = true;
 
+	@Parameter(key = "virtual_net", group = "Sandbox", description = "Usa a virtual network for all TCP/UDP communications")
+	public static boolean VIRTUAL_NET = true;
 
-    @Parameter(key = "virtual_net", group = "Sandbox", description = "Usa a virtual network for all TCP/UDP communications")
-    public static boolean VIRTUAL_NET = true;
+	@Parameter(key = "use_separate_classloader", group = "Sandbox", description = "Usa a separate classloader in the final test cases")
+	public static boolean USE_SEPARATE_CLASSLOADER = true;
 
-    @Parameter(key = "use_separate_classloader", group = "Sandbox", description = "Usa a separate classloader in the final test cases")
-    public static boolean USE_SEPARATE_CLASSLOADER = true;
-
-
-    // ---------------------------------------------------------------
+	// ---------------------------------------------------------------
 	// Experimental
 
-
-	@Parameter(key = "jee" , description = "Support for JEE")
+	@Parameter(key = "jee", description = "Support for JEE")
 	public static boolean JEE = true;
 
-	@Parameter(key = "handle_servlets" , description = "Special treatment of JEE Servlets")
-	public static boolean HANDLE_SERVLETS = false; //TODO off for now, as we might not need it in the end
+	@Parameter(key = "handle_servlets", description = "Special treatment of JEE Servlets")
+	public static boolean HANDLE_SERVLETS = false; // TODO off for now, as we
+													// might not need it in the
+													// end
 
 	@Parameter(key = "cluster_recursion", description = "The maximum level of recursion when calculating the dependencies in the test cluster")
 	public static int CLUSTER_RECURSION = 10;
@@ -1264,7 +1270,7 @@ public class Properties {
 
 	@Parameter(key = "instrument_method_calls", description = "Instrument methods calls")
 	public static boolean INSTRUMENT_METHOD_CALLS = false;
-	
+
 	@Parameter(key = "instrument_libraries", description = "Instrument the libraries used by the project under test")
 	public static boolean INSTRUMENT_LIBRARIES = false;
 
@@ -1277,10 +1283,7 @@ public class Properties {
 	public static boolean HANDLE_STATIC_FIELDS = true;
 
 	public enum TestFactory {
-		RANDOM, ALLMETHODS, TOURNAMENT, JUNIT, ARCHIVE, SERIALIZATION,
-		SEED_BEST_INDIVIDUAL, SEED_RANDOM_INDIVIDUAL,
-		SEED_BEST_AND_RANDOM_INDIVIDUAL, SEED_BEST_INDIVIDUAL_METHOD,
-		SEED_RANDOM_INDIVIDUAL_METHOD, SEED_MUTATED_BEST_INDIVIDUAL
+		RANDOM, ALLMETHODS, TOURNAMENT, JUNIT, ARCHIVE, SERIALIZATION, SEED_BEST_INDIVIDUAL, SEED_RANDOM_INDIVIDUAL, SEED_BEST_AND_RANDOM_INDIVIDUAL, SEED_BEST_INDIVIDUAL_METHOD, SEED_RANDOM_INDIVIDUAL_METHOD, SEED_MUTATED_BEST_INDIVIDUAL
 	}
 
 	@Parameter(key = "test_archive", description = "Use an archive of covered goals during test generation")
@@ -1305,7 +1308,7 @@ public class Properties {
 
 	/** Constant <code>SEED_CLONE=0.2</code> */
 	@Parameter(key = "seed_clone", description = "Probability with which existing individuals are cloned")
-    @DoubleValue(min = 0.0, max = 1.0)
+	@DoubleValue(min = 0.0, max = 1.0)
 	public static double SEED_CLONE = 0.2;
 
 	/** Constant <code>SEED_MUTATIONS=2</code> */
@@ -1386,7 +1389,6 @@ public class Properties {
 	@Parameter(key = "timeout_reset", group = "Test Execution", description = "Milliseconds allowed to execute the static reset of a test")
 	public static int TIMEOUT_RESET = 2000;
 
-
 	@Parameter(key = "concolic_timeout", group = "Test Execution", description = "Milliseconds allowed per test during concolic execution")
 	public static int CONCOLIC_TIMEOUT = 15000;
 
@@ -1420,14 +1422,13 @@ public class Properties {
 	@Parameter(key = "replace_gui", group = "Test Execution", description = "Replace javax.swing with a smart stub/mock")
 	public static boolean REPLACE_GUI = false;
 
-	
-    @Parameter(key = "max_started_threads", group = "Test Execution", description = "Max number of threads allowed to be started in each test")
-    public static int MAX_STARTED_THREADS = RuntimeSettings.maxNumberOfThreads;
+	@Parameter(key = "max_started_threads", group = "Test Execution", description = "Max number of threads allowed to be started in each test")
+	public static int MAX_STARTED_THREADS = RuntimeSettings.maxNumberOfThreads;
 
-    @Parameter(key = "max_loop_iterations", group = "Test Execution", description = "Max number of iterations allowed per loop. A negative value means no check is done.")
-    public static long MAX_LOOP_ITERATIONS = RuntimeSettings.maxNumberOfIterationsPerLoop;
+	@Parameter(key = "max_loop_iterations", group = "Test Execution", description = "Max number of iterations allowed per loop. A negative value means no check is done.")
+	public static long MAX_LOOP_ITERATIONS = RuntimeSettings.maxNumberOfIterationsPerLoop;
 
-    // ---------------------------------------------------------------
+	// ---------------------------------------------------------------
 	// Debugging
 
 	/** Constant <code>DEBUG=false</code> */
@@ -1444,7 +1445,6 @@ public class Properties {
 
 	@Parameter(key = "jmc", group = "Debugging", description = "Experimental: activate Flight Recorder in spawn client process for Java Mission Control")
 	public static boolean JMC = false;
-
 
 	// ---------------------------------------------------------------
 	// TODO: Fix description
@@ -1489,22 +1489,19 @@ public class Properties {
 	// Runtime parameters
 
 	public enum Criterion {
-		EXCEPTION, DEFUSE, ALLDEFS, BRANCH, CBRANCH, STRONGMUTATION, WEAKMUTATION,
-		MUTATION, STATEMENT, RHO, AMBIGUITY, IBRANCH, READABILITY,
-        ONLYBRANCH, ONLYMUTATION, METHODTRACE, METHOD, METHODNOEXCEPTION, LINE, ONLYLINE, OUTPUT, INPUT,
-        REGRESSION,	REGRESSIONTESTS, TRYCATCH
+		EXCEPTION, DEFUSE, ALLDEFS, BRANCH, CBRANCH, STRONGMUTATION, WEAKMUTATION, MUTATION, STATEMENT, RHO, AMBIGUITY, IBRANCH, READABILITY, ONLYBRANCH, ONLYMUTATION, METHODTRACE, METHOD, METHODNOEXCEPTION, LINE, ONLYLINE, OUTPUT, INPUT, REGRESSION, REGRESSIONTESTS, TRYCATCH
 	}
 
-    /** Constant <code>CRITERION</code> */
-    @Parameter(key = "criterion", group = "Runtime", description = "Coverage criterion. Can define more than one criterion by using a ':' separated list")
-    public static Criterion[] CRITERION = new Criterion[] {
-            //these are basic criteria that should be always on by default
-            Criterion.LINE, Criterion.BRANCH, Criterion.EXCEPTION, Criterion.WEAKMUTATION, Criterion.OUTPUT, Criterion.METHOD, Criterion.METHODNOEXCEPTION, Criterion.CBRANCH  };
+	/** Constant <code>CRITERION</code> */
+	@Parameter(key = "criterion", group = "Runtime", description = "Coverage criterion. Can define more than one criterion by using a ':' separated list")
+	public static Criterion[] CRITERION = new Criterion[] {
+			// these are basic criteria that should be always on by default
+			Criterion.LINE, Criterion.BRANCH, Criterion.EXCEPTION, Criterion.WEAKMUTATION, Criterion.OUTPUT,
+			Criterion.METHOD, Criterion.METHODNOEXCEPTION, Criterion.CBRANCH };
 
-
-    /** Cache target class */
+	/** Cache target class */
 	private static Class<?> TARGET_CLASS_INSTANCE = null;
-	
+
 	/** Cache target regression class */
 	private static Class<?> TARGET_REGRESSION_CLASS_INSTANCE = null;
 
@@ -1514,7 +1511,6 @@ public class Properties {
 
 	@Parameter(key = "CP_file_path", group = "Runtime", description = "Location of file where classpath is specified (in its first line). This is needed for operating systems like Windows where cannot have too long input parameters")
 	public static String CP_FILE_PATH = null;
-
 
 	/** Constant <code>PROJECT_PREFIX="null"</code> */
 	@Parameter(key = "PROJECT_PREFIX", group = "Runtime", description = "Package name of target package")
@@ -1562,42 +1558,41 @@ public class Properties {
 	@Parameter(key = "exclude_ibranches_cut", group = "Runtime", description = "Exclude ibranches in the cut, to speed up ibranch as secondary criterion")
 	public static boolean EXCLUDE_IBRANCHES_CUT = false;
 
-
 	/*** Evosuite regression testing properties ***/
-	
+
 	/** Constant <code>REGRESSIONCP</code> */
 	@Parameter(key = "regressioncp", group = "Runtime", description = "Regression testing classpath")
 	public static String REGRESSIONCP = ".";
-	
+
 	/** Constant <code>REGRESSION_ANALYSIS_COMBINATIONS</code> */
 	@Parameter(key = "regression_analysis_combinations", group = "Runtime", description = "What regression fitness combination stragetegy is used")
 	public static int REGRESSION_ANALYSIS_COMBINATIONS = 0;
-	
+
 	/** Constant <code>REGRESSION_ANALYSIS_BRANCHDISTANCE</code> */
 	@Parameter(key = "regression_analysis_branchdistance", group = "Runtime", description = "What regression branch distance fitness strategy is used")
 	public static int REGRESSION_ANALYSIS_BRANCHDISTANCE = 0;
-	
+
 	/** Constant <code>REGRESSION_ANALYSIS_OBJECTDISTANCE</code> */
 	@Parameter(key = "regression_analysis_objectdistance", group = "Runtime", description = "What regression object distance fitness strategy will be used")
 	public static int REGRESSION_ANALYSIS_OBJECTDISTANCE = 0;
-	
+
 	/** Constant <code>REGRESSION_DIFFERENT_BRANCHES</code> */
 	@Deprecated
 	@Parameter(key = "regression_different_branches", group = "Runtime", description = "Classes under test have different branch orders")
 	public static boolean REGRESSION_DIFFERENT_BRANCHES = false;
-	
+
 	/** Constant <code>REGRESSION_BRANCH_DISTANCE</code> */
-    @Parameter(key = "regression_branch_distance", group = "Runtime", description = "Enable control-flow distance measurement for regression testing")
-    public static boolean REGRESSION_BRANCH_DISTANCE = false;
-	
+	@Parameter(key = "regression_branch_distance", group = "Runtime", description = "Enable control-flow distance measurement for regression testing")
+	public static boolean REGRESSION_BRANCH_DISTANCE = false;
+
 	/** Constant <code>REGRESSION_FITNESS</code> */
-    @Parameter(key = "regression_fitness", group = "Runtime", description = "Set fitness function for EvosuiteR. [Defaults to Random search]")
-    public static RegressionMeasure REGRESSION_FITNESS = RegressionMeasure.RANDOM;
-	
+	@Parameter(key = "regression_fitness", group = "Runtime", description = "Set fitness function for EvosuiteR. [Defaults to Random search]")
+	public static RegressionMeasure REGRESSION_FITNESS = RegressionMeasure.RANDOM;
+
 	/** Constant <code>REGRESSION_ANALYZE</code> */
 	@Parameter(key = "regression_analyze", group = "Runtime", description = "Analyze the classes under test, to ensure the effectiveness of evosuite")
 	public static boolean REGRESSION_ANALYZE = false;
-	
+
 	/** Constant <code>REGRESSION_RANDOM_STRATEGY</code> */
 	@Parameter(key = "regression_random_strategy", group = "Runtime", description = "What strategy to take after the first fault is found")
 	public static int REGRESSION_RANDOM_STRATEGY = 3;
@@ -1605,28 +1600,27 @@ public class Properties {
 	/** Constant <code>REGRESSION_DISABLE_SPECIAL_ASSERTIONS</code> */
 	@Parameter(key = "regression_disable_special_assertions", group = "Runtime", description = "disable undesirable assertions")
 	public static boolean REGRESSION_DISABLE_SPECIAL_ASSERTIONS = false;
-	
+
 	/** Constant <code>REGRESSION_DIVERSITY</code> */
 	@Parameter(key = "regression_diversity", group = "Runtime", description = "Include diversity fitness measurement")
 	public static boolean REGRESSION_DIVERSITY = false;
 
 	/** Constant <code>REGRESSION_SKIP_SIMILAR</code> */
-    @Parameter(key = "regression_skip_similar", group = "Runtime", description = "Skip running EvosuiteR on similar classes")
-    public static boolean REGRESSION_SKIP_SIMILAR = false;
-    
-    /** Constant <code>REGRESSION_SKIP_DIFFERENT_CFG</code> */
-    @Parameter(key = "regression_skip_different_cfg", group = "Runtime", description = "Skip running EvosuiteR on classes with different control-flow-graph")
-    public static boolean REGRESSION_SKIP_DIFFERENT_CFG = false;
-    
-    /** Constant <code>REGRESSION_STATISTICS</code> */
-    @Parameter(key = "regression_statistics", group = "Runtime", description = "Track extra search statistics during regression testing")
-    public static boolean REGRESSION_STATISTICS = false;
-	
-	
+	@Parameter(key = "regression_skip_similar", group = "Runtime", description = "Skip running EvosuiteR on similar classes")
+	public static boolean REGRESSION_SKIP_SIMILAR = false;
+
+	/** Constant <code>REGRESSION_SKIP_DIFFERENT_CFG</code> */
+	@Parameter(key = "regression_skip_different_cfg", group = "Runtime", description = "Skip running EvosuiteR on classes with different control-flow-graph")
+	public static boolean REGRESSION_SKIP_DIFFERENT_CFG = false;
+
+	/** Constant <code>REGRESSION_STATISTICS</code> */
+	@Parameter(key = "regression_statistics", group = "Runtime", description = "Track extra search statistics during regression testing")
+	public static boolean REGRESSION_STATISTICS = false;
+
 	public enum Strategy {
-	    ONEBRANCH, EVOSUITE, RANDOM, RANDOM_FIXED, ENTBUG, REGRESSION, MOSUITE, DSE
+		ONEBRANCH, EVOSUITE, RANDOM, RANDOM_FIXED, ENTBUG, REGRESSION, MOSUITE, DSE
 	}
-	
+
 	/** Constant <code>STRATEGY</code> */
 	@Parameter(key = "strategy", group = "Runtime", description = "Which mode to use")
 	public static Strategy STRATEGY = Strategy.EVOSUITE;
@@ -1653,16 +1647,12 @@ public class Properties {
 	@Parameter(key = "min_free_mem", group = "Runtime", description = "Minimum amount of available memory")
 	public static int MIN_FREE_MEM = 50 * 1000 * 1000;
 
-
 	/** Constant <code>CLIENT_ON_THREAD=false</code> */
 	@Parameter(key = "client_on_thread", group = "Runtime", description = "Run client process on same JVM of master in separate thread. To be used only for debugging purposes")
 	public static volatile boolean CLIENT_ON_THREAD = false;
 
-
 	@Parameter(key = "is_running_a_system_test", group = "Runtime", description = "Specify that a system test is running. To be used only for debugging purposes")
 	public static volatile boolean IS_RUNNING_A_SYSTEM_TEST = false;
-
-
 
 	// ---------------------------------------------------------------
 	// Seeding test cases
@@ -1711,7 +1701,7 @@ public class Properties {
 	/**
 	 * Initialize properties from property file or command line parameters
 	 */
-	private void initializeProperties() throws IllegalStateException{
+	private void initializeProperties() throws IllegalStateException {
 		for (String parameter : parameterMap.keySet()) {
 			try {
 				String property = System.getProperty(parameter);
@@ -1722,8 +1712,8 @@ public class Properties {
 					setValue(parameter, property);
 				}
 			} catch (Exception e) {
-                throw new IllegalStateException("Wrong parameter settings for '" + parameter + "': " + e.getMessage());
-            }
+				throw new IllegalStateException("Wrong parameter settings for '" + parameter + "': " + e.getMessage());
+			}
 		}
 		if (POPULATION_LIMIT == PopulationLimit.STATEMENTS) {
 			if (MAX_LENGTH < POPULATION) {
@@ -1736,8 +1726,7 @@ public class Properties {
 	 * Load and initialize a properties file from the default path
 	 */
 	public void loadProperties(boolean silent) {
-		loadPropertiesFile(System.getProperty(PROPERTIES_FILE,
-				"evosuite-files/evosuite.properties"), silent);
+		loadPropertiesFile(System.getProperty(PROPERTIES_FILE, "evosuite-files/evosuite.properties"), silent);
 		initializeProperties();
 	}
 
@@ -1768,33 +1757,25 @@ public class Properties {
 				properties.load(in);
 
 				if (!silent)
-					LoggingUtils.getEvoLogger().info(
-							"* Properties loaded from "
-									+ propertiesFile.getAbsolutePath());
+					LoggingUtils.getEvoLogger().info("* Properties loaded from " + propertiesFile.getAbsolutePath());
 			} else {
 				propertiesPath = "evosuite.properties";
-				in = this.getClass().getClassLoader()
-						.getResourceAsStream(propertiesPath);
+				in = this.getClass().getClassLoader().getResourceAsStream(propertiesPath);
 				if (in != null) {
 					properties.load(in);
 					if (!silent)
-						LoggingUtils.getEvoLogger().info(
-								"* Properties loaded from "
-										+ this.getClass().getClassLoader()
-												.getResource(propertiesPath)
-												.getPath());
+						LoggingUtils.getEvoLogger().info("* Properties loaded from "
+								+ this.getClass().getClassLoader().getResource(propertiesPath).getPath());
 				}
-				// logger.info("* Properties loaded from default configuration file.");
+				// logger.info("* Properties loaded from default configuration
+				// file.");
 			}
 		} catch (FileNotFoundException e) {
-			logger.warn("- Error: Could not find configuration file "
-					+ propertiesPath);
+			logger.warn("- Error: Could not find configuration file " + propertiesPath);
 		} catch (IOException e) {
-			logger.warn("- Error: Could not find configuration file "
-					+ propertiesPath);
+			logger.warn("- Error: Could not find configuration file " + propertiesPath);
 		} catch (Exception e) {
-			logger.warn("- Error: Could not find configuration file "
-					+ propertiesPath);
+			logger.warn("- Error: Could not find configuration file " + propertiesPath);
 		}
 	}
 
@@ -1841,8 +1822,7 @@ public class Properties {
 	 *             if any.
 	 * @return a {@link java.lang.String} object.
 	 */
-	public static String getDescription(String key)
-			throws NoSuchParameterException {
+	public static String getDescription(String key) throws NoSuchParameterException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1878,8 +1858,7 @@ public class Properties {
 	 *             if any.
 	 * @return a {@link org.evosuite.Properties.IntValue} object.
 	 */
-	public static IntValue getIntLimits(String key)
-			throws NoSuchParameterException {
+	public static IntValue getIntLimits(String key) throws NoSuchParameterException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1896,8 +1875,7 @@ public class Properties {
 	 *             if any.
 	 * @return a {@link org.evosuite.Properties.LongValue} object.
 	 */
-	public static LongValue getLongLimits(String key)
-			throws NoSuchParameterException {
+	public static LongValue getLongLimits(String key) throws NoSuchParameterException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1914,8 +1892,7 @@ public class Properties {
 	 *             if any.
 	 * @return a {@link org.evosuite.Properties.DoubleValue} object.
 	 */
-	public static DoubleValue getDoubleLimits(String key)
-			throws NoSuchParameterException {
+	public static DoubleValue getDoubleLimits(String key) throws NoSuchParameterException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1937,8 +1914,7 @@ public class Properties {
 	 * @return a int.
 	 */
 	public static int getIntegerValue(String key)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1959,8 +1935,7 @@ public class Properties {
 	 * @return a long.
 	 */
 	public static long getLongValue(String key)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -1981,8 +1956,7 @@ public class Properties {
 	 * @return a boolean.
 	 */
 	public static boolean getBooleanValue(String key)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2003,8 +1977,7 @@ public class Properties {
 	 * @return a double.
 	 */
 	public static double getDoubleValue(String key)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2025,8 +1998,7 @@ public class Properties {
 	 * @return a {@link java.lang.String} object.
 	 */
 	public static String getStringValue(String key)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2071,8 +2043,7 @@ public class Properties {
 	 *             if any.
 	 */
 	public void setValue(String key, int value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2102,8 +2073,7 @@ public class Properties {
 	 *             if any.
 	 */
 	public void setValue(String key, long value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2133,8 +2103,7 @@ public class Properties {
 	 *             if any.
 	 */
 	public void setValue(String key, boolean value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2157,8 +2126,7 @@ public class Properties {
 	 *             if any.
 	 */
 	public void setValue(String key, double value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key))
 			throw new NoSuchParameterException(key);
 
@@ -2187,8 +2155,7 @@ public class Properties {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void setValue(String key, String value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key)) {
 			throw new NoSuchParameterException(key);
 		}
@@ -2196,36 +2163,35 @@ public class Properties {
 		Field f = parameterMap.get(key);
 		changedFields.add(key);
 
-		//Enum
+		// Enum
 		if (f.getType().isEnum()) {
-			f.set(null, Enum.valueOf((Class<Enum>) f.getType(),
-					value.toUpperCase()));
+			f.set(null, Enum.valueOf((Class<Enum>) f.getType(), value.toUpperCase()));
 		}
-		//Integers
+		// Integers
 		else if (f.getType().equals(int.class)) {
 			setValue(key, Integer.parseInt(value));
 		} else if (f.getType().equals(Integer.class)) {
 			setValue(key, (Integer) Integer.parseInt(value));
 		}
-		//Long
+		// Long
 		else if (f.getType().equals(long.class)) {
 			setValue(key, Long.parseLong(value));
 		} else if (f.getType().equals(Long.class)) {
 			setValue(key, (Long) Long.parseLong(value));
 		}
-		//Boolean
+		// Boolean
 		else if (f.getType().equals(boolean.class)) {
 			setValue(key, strictParseBoolean(value));
 		} else if (f.getType().equals(Boolean.class)) {
 			setValue(key, (Boolean) strictParseBoolean(value));
 		}
-		//Double
+		// Double
 		else if (f.getType().equals(double.class)) {
 			setValue(key, Double.parseDouble(value));
 		} else if (f.getType().equals(Double.class)) {
 			setValue(key, (Double) Double.parseDouble(value));
 		}
-		//Array
+		// Array
 		else if (f.getType().isArray()) {
 			if (f.getType().isAssignableFrom(String[].class)) {
 				setValue(key, value.split(":"));
@@ -2235,8 +2201,7 @@ public class Properties {
 
 				int pos = 0;
 				for (String stringValue : values) {
-					criteria[pos++] = Enum.valueOf(Criterion.class,
-							stringValue.toUpperCase());
+					criteria[pos++] = Enum.valueOf(Criterion.class, stringValue.toUpperCase());
 				}
 
 				f.set(this, criteria);
@@ -2255,8 +2220,7 @@ public class Properties {
 	 */
 	protected boolean strictParseBoolean(String s) {
 		if (s == null || s.isEmpty()) {
-			throw new IllegalArgumentException(
-					"empty string does not represent a valid boolean");
+			throw new IllegalArgumentException("empty string does not represent a valid boolean");
 		}
 
 		if (s.equalsIgnoreCase("true")) {
@@ -2267,8 +2231,7 @@ public class Properties {
 			return false;
 		}
 
-		throw new IllegalArgumentException(
-				"Invalid string representing a boolean: " + s);
+		throw new IllegalArgumentException("Invalid string representing a boolean: " + s);
 	}
 
 	/**
@@ -2288,8 +2251,7 @@ public class Properties {
 	 *             if any.
 	 */
 	public void setValue(String key, String[] value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key)) {
 			throw new NoSuchParameterException(key);
 		}
@@ -2310,8 +2272,7 @@ public class Properties {
 	 * @throws IllegalAccessException
 	 */
 	public void setValue(String key, Object value)
-			throws NoSuchParameterException, IllegalArgumentException,
-			IllegalAccessException {
+			throws NoSuchParameterException, IllegalArgumentException, IllegalAccessException {
 		if (!parameterMap.containsKey(key)) {
 			throw new NoSuchParameterException(key);
 		}
@@ -2373,14 +2334,12 @@ public class Properties {
 	private static void setClassPrefix() {
 		if (TARGET_CLASS != null && !TARGET_CLASS.equals("")) {
 			if (TARGET_CLASS.contains(".")) {
-				CLASS_PREFIX = TARGET_CLASS.substring(0,
-						TARGET_CLASS.lastIndexOf('.'));
+				CLASS_PREFIX = TARGET_CLASS.substring(0, TARGET_CLASS.lastIndexOf('.'));
 				SUB_PREFIX = CLASS_PREFIX.replace(PROJECT_PREFIX + ".", "");
 			}
 			if (PROJECT_PREFIX == null || PROJECT_PREFIX.equals("")) {
 				if (CLASS_PREFIX.contains("."))
-					PROJECT_PREFIX = CLASS_PREFIX.substring(0,
-							CLASS_PREFIX.indexOf("."));
+					PROJECT_PREFIX = CLASS_PREFIX.substring(0, CLASS_PREFIX.indexOf("."));
 				else
 					PROJECT_PREFIX = CLASS_PREFIX;
 				// LoggingUtils.getEvoLogger().info("* Using project prefix: "
@@ -2388,34 +2347,35 @@ public class Properties {
 			}
 		}
 	}
-	
+
 	private static boolean toReturnRegression = false;
-	
+
 	/*
 	 * Get target class
 	 * 
-	 * @param isOriginal whether or not you want the original or the regression class.
+	 * @param isOriginal whether or not you want the original or the regression
+	 * class.
 	 */
-	public static Class<?> getTargetClassRegression(boolean isOriginal){
+	public static Class<?> getTargetClassRegression(boolean isOriginal) {
 		if (isOriginal && TARGET_CLASS_INSTANCE != null
-		        && TARGET_CLASS_INSTANCE.getCanonicalName().equals(TARGET_CLASS))
+				&& TARGET_CLASS_INSTANCE.getCanonicalName().equals(TARGET_CLASS))
 			return TARGET_CLASS_INSTANCE;
-		else if(!isOriginal && TARGET_REGRESSION_CLASS_INSTANCE != null
-		        && TARGET_REGRESSION_CLASS_INSTANCE.getCanonicalName().equals(TARGET_CLASS))
+		else if (!isOriginal && TARGET_REGRESSION_CLASS_INSTANCE != null
+				&& TARGET_REGRESSION_CLASS_INSTANCE.getCanonicalName().equals(TARGET_CLASS))
 			return TARGET_REGRESSION_CLASS_INSTANCE;
-		
-		if(isOriginal)
-		 toReturnRegression = true;
-		
-		 Class<?> targetClass = getTargetClass(true);
-		 
-		 toReturnRegression = false;
-		 return targetClass;
+
+		if (isOriginal)
+			toReturnRegression = true;
+
+		Class<?> targetClass = getTargetClass(true);
+
+		toReturnRegression = false;
+		return targetClass;
 	}
 
 	/**
-	 * Returns the target class. It required, it also executes the 
-	 * <clinit> class initialiser of the target class 
+	 * Returns the target class. It required, it also executes the
+	 * <clinit> class initialiser of the target class
 	 * 
 	 * @return the initialised target class
 	 */
@@ -2424,10 +2384,10 @@ public class Properties {
 	}
 
 	/**
-	 * Returns the target class. If the class is not yet initialised, 
-	 * this method *does not* execute the <clinit> class initialiser of the target class. 
-	 * This method explicitly states that the <clinit> method is not executed 
-	 * because of this method.
+	 * Returns the target class. If the class is not yet initialised, this
+	 * method *does not* execute the <clinit> class initialiser of the target
+	 * class. This method explicitly states that the <clinit> method is not
+	 * executed because of this method.
 	 * 
 	 * @return the target class. The target class could be uninitialised
 	 */
@@ -2435,11 +2395,11 @@ public class Properties {
 		return getTargetClass(false);
 	}
 
-	
 	/**
-	 * Returns true if there is a loaded target class object.
-	 * Warning: resetTargetClass() does not load the class, only
-	 * discards the previous target class object.
+	 * Returns true if there is a loaded target class object. Warning:
+	 * resetTargetClass() does not load the class, only discards the previous
+	 * target class object.
+	 * 
 	 * @return
 	 */
 	public static boolean hasTargetClassBeenLoaded() {
@@ -2453,12 +2413,10 @@ public class Properties {
 	 */
 	private static Class<?> getTargetClass(boolean initialise) {
 
-		if (TARGET_CLASS_INSTANCE != null
-				&& TARGET_CLASS_INSTANCE.getCanonicalName()
-						.equals(TARGET_CLASS))
+		if (TARGET_CLASS_INSTANCE != null && TARGET_CLASS_INSTANCE.getCanonicalName().equals(TARGET_CLASS))
 			return TARGET_CLASS_INSTANCE;
 
-		if (TARGET_CLASS_INSTANCE!=null) { 
+		if (TARGET_CLASS_INSTANCE != null) {
 			TARGET_CLASS_INSTANCE = null;
 		}
 
@@ -2466,30 +2424,29 @@ public class Properties {
 
 		try {
 			/*
-			 * TODO: loading the SUT will execute its static initializer.
-			 * This might interact with the environment (eg, read a file, access static
-			 * variables of other classes), and even fails if an exception is thrown.
-			 * Those cases should be handled here before starting the search.
+			 * TODO: loading the SUT will execute its static initializer. This
+			 * might interact with the environment (eg, read a file, access
+			 * static variables of other classes), and even fails if an
+			 * exception is thrown. Those cases should be handled here before
+			 * starting the search.
 			 */
 
-			Runtime.getInstance().resetRuntime(); //it is important to initialize the VFS
-
+			Runtime.getInstance().resetRuntime(); // it is important to
+													// initialize the VFS
 
 			LoopCounter.getInstance().setActive(false);
 			TARGET_CLASS_INSTANCE = Class.forName(TARGET_CLASS, initialise,
 					TestGenerationContext.getInstance().getClassLoaderForSUT());
-			
 
 			if (STRATEGY == Strategy.REGRESSION) {
 				TARGET_REGRESSION_CLASS_INSTANCE = Class.forName(TARGET_CLASS, initialise,
-                        TestGenerationContext.getInstance().getRegressionClassLoaderForSUT());
+						TestGenerationContext.getInstance().getRegressionClassLoaderForSUT());
 			}
 
 			setClassPrefix();
 
 		} catch (ClassNotFoundException e) {
-			LoggingUtils.getEvoLogger().warn(
-					"* Could not find class under test " + Properties.TARGET_CLASS + ": " + e);
+			LoggingUtils.getEvoLogger().warn("* Could not find class under test " + Properties.TARGET_CLASS + ": " + e);
 		} finally {
 			LoopCounter.getInstance().setActive(wasLoopCheckOn);
 		}
@@ -2510,8 +2467,7 @@ public class Properties {
 	 * Update the evosuite.properties file with the current setting
 	 */
 	public void writeConfiguration() {
-		URL fileURL = this.getClass().getClassLoader()
-				.getResource("evosuite.properties");
+		URL fileURL = this.getClass().getClassLoader().getResource("evosuite.properties");
 		String name = fileURL.getFile();
 		writeConfiguration(name);
 	}
@@ -2525,10 +2481,10 @@ public class Properties {
 	public void writeConfiguration(String fileName) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("CP=");
-		// Replace backslashes with forwardslashes, as backslashes are dropped during reading
+		// Replace backslashes with forwardslashes, as backslashes are dropped
+		// during reading
 		// TODO: What if there are weird characters in the code? Need regex
-		buffer.append(ClassPathHandler.getInstance()
-				.getTargetProjectClasspath().replace("\\", "/"));
+		buffer.append(ClassPathHandler.getInstance().getTargetProjectClasspath().replace("\\", "/"));
 		buffer.append("\nPROJECT_PREFIX=");
 		if (Properties.PROJECT_PREFIX != null)
 			buffer.append(Properties.PROJECT_PREFIX);
@@ -2585,19 +2541,17 @@ public class Properties {
 					try {
 						f.set(null, defaultMap.get(f));
 					} catch (Exception e) {
-						logger.error("Failed to init property field " + f
-								+ " , " + e.getMessage(), e);
+						logger.error("Failed to init property field " + f + " , " + e.getMessage(), e);
 					}
 				}
 			}
 		}
 	}
-	
-	
+
 	/*
 	 * whether or not the regression mode is running
 	 */
-	public static boolean isRegression(){
+	public static boolean isRegression() {
 		boolean isRegression = (STRATEGY == Strategy.REGRESSION);
 		return isRegression;
 	}
