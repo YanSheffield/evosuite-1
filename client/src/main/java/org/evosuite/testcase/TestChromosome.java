@@ -311,7 +311,6 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: delete");
 			if(mutationDelete())
 				changed = true;
-//			System.out.println("*delete");
 		}
 
 		// Change
@@ -319,7 +318,6 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: change");
 			if (mutationChange())
 				changed = true;
-//			System.out.println("*Change");
 		}
 
 		// Insert
@@ -327,7 +325,6 @@ public class TestChromosome extends ExecutableChromosome {
 			logger.debug("Mutation: insert");
 			if (mutationInsert())
 				changed = true;
-//			System.out.println("*Insert");
 		}
 
 		if (changed) {
