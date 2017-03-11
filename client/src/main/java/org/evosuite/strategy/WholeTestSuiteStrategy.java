@@ -109,8 +109,8 @@ public class WholeTestSuiteStrategy extends TestGenerationStrategy {
 			LoggingUtils.getEvoLogger().info("* Using seed {}", Randomness.getSeed() );
 			LoggingUtils.getEvoLogger().info("* Starting evolution");
 			ClientServices.getInstance().getClientNode().changeState(ClientState.SEARCH);
+
 			algorithm.generateSolution();
-			
 			// TODO: Refactor MOO!
 			// bestSuites = (List<TestSuiteChromosome>) ga.getBestIndividuals();
 			testSuite = (TestSuiteChromosome) algorithm.getBestIndividual();

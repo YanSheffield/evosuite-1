@@ -30,7 +30,6 @@ import org.junit.Test;
 
 import com.examples.with.different.packagename.NullInteger;
 
-
 public class NullIntegerSystemTest extends SystemTestBase {
 
 	@Test
@@ -38,17 +37,18 @@ public class NullIntegerSystemTest extends SystemTestBase {
 		EvoSuite evosuite = new EvoSuite();
 
 		String targetClass = NullInteger.class.getCanonicalName();
-		
-		Properties.TARGET_CLASS = targetClass;	
+
+		Properties.TARGET_CLASS = targetClass;
+
 		String[] command = new String[] { "-generateSuite", "-class", targetClass };
+
 		Object result = evosuite.parseCommandLine(command);
 		GeneticAlgorithm<?> ga = getGAFromResult(result);
 		TestSuiteChromosome best = (TestSuiteChromosome) ga.getBestIndividual();
-		System.out.println("EvolvedTestSuite:\n" + best);	
+		System.out.println("EvolvedTestSuite:\n" + best);
+
 		int goals = TestGenerationStrategy.getFitnessFactories().get(0).getCoverageGoals().size(); // assuming single fitness function
-		
 		Assert.assertEquals("Wrong number of goals: ", 3, goals);
 		Assert.assertEquals("Non-optimal coverage: ", 1d, best.getCoverage(), 0.001);
-}
-	
+	}
 }

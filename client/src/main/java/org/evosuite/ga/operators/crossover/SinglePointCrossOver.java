@@ -44,12 +44,13 @@ public class SinglePointCrossOver extends CrossOverFunction {
 		if (parent1.size() < 2 || parent2.size() < 2) {
 			return;
 		}
+		// Choose a position in the middle
 		int point1 = Randomness.nextInt(parent1.size() - 1) + 1;
 		int point2 = Randomness.nextInt(parent2.size() - 1) + 1;
 
 		Chromosome t1 = parent1.clone();
 		Chromosome t2 = parent2.clone();
-	
+
 		parent1.crossOver(t2, point1, point2);
 		parent2.crossOver(t1, point2, point1);
 	}

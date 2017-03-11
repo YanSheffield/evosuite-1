@@ -274,7 +274,6 @@ public abstract class Chromosome implements Comparable<Chromosome>, Serializable
 	 * Apply mutation
 	 */
 	public abstract void mutate();
-	
 	/**
 	 * Apply mutation with high probability
 	 */
@@ -308,13 +307,9 @@ public abstract class Chromosome implements Comparable<Chromosome>, Serializable
 	 */
 	public abstract void crossOver(Chromosome other, int position1, int position2)
 			throws ConstructionFailedException;
-
 	public abstract void uniformCrossOver(Chromosome individual,String identify) 
-			throws ConstructionFailedException;
-	
-	
-	
-	
+			throws ConstructionFailedException;	
+
 	/**
 	 * Apply the local search
 	 * 
