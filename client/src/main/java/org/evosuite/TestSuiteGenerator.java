@@ -243,7 +243,7 @@ public class TestSuiteGenerator {
                 return TestGenerationResultBuilder.buildErrorResult("Could not match the branches across the two versions.");
             }
 		}
-//--enter point 6 *7
+
 		TestSuiteChromosome testCases = generateTests();
 
 		postProcessTests(testCases);
@@ -681,7 +681,7 @@ public class TestSuiteGenerator {
 		}
 
 		TestGenerationStrategy strategy = getTestGenerationStrategy();
-//Enter point 7
+
 		TestSuiteChromosome testSuite = strategy.generateTests();
 
 		if (Properties.CHECK_CONTRACTS) {
