@@ -19,18 +19,13 @@
  */
 package org.evosuite.ga.operators.crossover;
 
-import java.util.List;
-
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ConstructionFailedException;
-import org.evosuite.testsuite.TestSuiteChromosome;
-
-import ch.qos.logback.core.joran.conditional.ThenAction;
 /**
  * Implement uniform crossover 
  * @author Yan Ge
  */
-public class UniformCrossOver extends CrossOverFunction<Chromosome>{
+public class UniformCrossOver extends CrossOverFunction{
 
 	private static final long serialVersionUID = 2981387570766261795L;
 	

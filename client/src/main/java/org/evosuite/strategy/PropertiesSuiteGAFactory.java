@@ -286,7 +286,6 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
 		ChromosomeFactory<TestSuiteChromosome> factory = getChromosomeFactory();
 		
 		// FIXXME
-//Enter point 9
 		GeneticAlgorithm<TestSuiteChromosome> ga = getGeneticAlgorithm(factory);
 
 		if (Properties.NEW_STATISTICS)

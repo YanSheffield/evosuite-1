@@ -638,7 +638,6 @@ public class TestSuiteGenerator {
 		}
 
 		TestGenerationStrategy strategy = getTestGenerationStrategy();
-
 		TestSuiteChromosome testSuite = strategy.generateTests();
 
 		if (Properties.CHECK_CONTRACTS) {

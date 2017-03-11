@@ -142,7 +142,6 @@ public class ClientNodeImpl implements ClientNodeLocal, ClientNodeRemote {
 				try {
 					// Starting a new search
 					TestSuiteGenerator generator = new TestSuiteGenerator();
-//-enter point 5
 					results.add(generator.generateTestSuite());
 					// TODO: Why?
 					// GeneticAlgorithm<?> ga = generator.getEmployedGeneticAlgorithm();

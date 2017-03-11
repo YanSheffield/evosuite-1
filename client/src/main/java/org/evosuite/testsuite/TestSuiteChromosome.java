@@ -275,8 +275,7 @@ public class TestSuiteChromosome extends AbstractTestSuiteChromosome<TestChromos
 		for (int i = 0; i < Properties.NUMBER_OF_MUTATIONS; i++) {
 			super.mutateWithHighProbobility();
 		}
-	}
-	
+	}	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -304,5 +303,5 @@ public class TestSuiteChromosome extends AbstractTestSuiteChromosome<TestChromos
 		}
 		return result;
 	}
-
+ 
 }

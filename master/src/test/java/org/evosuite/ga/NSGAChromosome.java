@@ -128,16 +128,7 @@ public class NSGAChromosome extends Chromosome
 		// empty
 		return 0;
 	}
-//	@Override
-//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//	@Override
-//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+
 	/**
 	 *  Polynomial Mutation (for real values) - PM
 	 */
@@ -203,12 +194,6 @@ public class NSGAChromosome extends Chromosome
 		// empty
 		return 0;
 	}
-
-//	@Override
-//	public <T extends Chromosome> int compareSecondaryObjective(T o) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 
 	@Override
 	public void mutateWithHighProbability() {

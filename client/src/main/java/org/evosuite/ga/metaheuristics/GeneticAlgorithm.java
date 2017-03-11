@@ -959,13 +959,10 @@ public abstract class GeneticAlgorithm<T extends Chromosome> implements SearchAl
 	 */
 	public boolean isFinished() {
 		for (StoppingCondition c : stoppingConditions) {
-//			System.out.println("isfinish3");
 			// logger.error(c + " "+ c.getCurrentValue());
 			if (c.isFinished())
-//				System.out.println("isfinish1");
 				return true;
 		}
-//		System.out.println("isfinish2");
 		return false;
 	}
 
