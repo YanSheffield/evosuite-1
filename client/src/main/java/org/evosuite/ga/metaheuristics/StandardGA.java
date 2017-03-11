@@ -43,8 +43,8 @@ public class StandardGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	/**
 	 * Constructor
 	 *
-	 * @param factory
-	 *            a {@link org.evosuite.ga.ChromosomeFactory} object.
+	 * @param factory a {@link org.evosuite.ga.ChromosomeFactory} object.
+	 *      
 	 */
 	public StandardGA(ChromosomeFactory<T> factory) {
 		super(factory);
@@ -138,13 +138,10 @@ public class StandardGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			bestFitness = 0.0;
 			lastBestFitness = 0.0;
 		}
-		// System.out.println("Standard GA");
+
 		while (!isFinished()) {
-			// System.out.println("Enter Evolve");
 			logger.debug("Current population: " + getAge() + "/" + Properties.SEARCH_BUDGET);
 			logger.info("Best fitness: " + getBestIndividual().getFitness());
-			// System.out.println("Initial best fitness
-			// "+getBestIndividual().getFitness());
 
 			evolve();
 			// Determine fitness

@@ -21,8 +21,6 @@ package org.evosuite.basic;
 
 import org.evosuite.EvoSuite;
 import org.evosuite.Properties;
-import org.evosuite.Properties.Algorithm;
-import org.evosuite.Properties.Criterion;
 import org.evosuite.SystemTestBase;
 import org.evosuite.ga.metaheuristics.GeneticAlgorithm;
 import org.evosuite.strategy.TestGenerationStrategy;
@@ -30,9 +28,7 @@ import org.evosuite.testsuite.TestSuiteChromosome;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.examples.with.different.packagename.Calculator;
 import com.examples.with.different.packagename.NullInteger;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.Static;
 
 
 public class NullIntegerSystemTest extends SystemTestBase {
@@ -43,16 +39,12 @@ public class NullIntegerSystemTest extends SystemTestBase {
 
 		String targetClass = NullInteger.class.getCanonicalName();
 		
-		Properties.TARGET_CLASS = targetClass;
-		
+		Properties.TARGET_CLASS = targetClass;	
 		String[] command = new String[] { "-generateSuite", "-class", targetClass };
-
 		Object result = evosuite.parseCommandLine(command);
-		
 		GeneticAlgorithm<?> ga = getGAFromResult(result);
 		TestSuiteChromosome best = (TestSuiteChromosome) ga.getBestIndividual();
-		System.out.println("EvolvedTestSuite:\n" + best);
-		
+		System.out.println("EvolvedTestSuite:\n" + best);	
 		int goals = TestGenerationStrategy.getFitnessFactories().get(0).getCoverageGoals().size(); // assuming single fitness function
 		
 		Assert.assertEquals("Wrong number of goals: ", 3, goals);

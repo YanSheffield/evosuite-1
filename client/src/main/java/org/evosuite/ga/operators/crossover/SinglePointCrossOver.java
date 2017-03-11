@@ -49,7 +49,7 @@ public class SinglePointCrossOver extends CrossOverFunction {
 
 		Chromosome t1 = parent1.clone();
 		Chromosome t2 = parent2.clone();
-		//所有类里面的东西都属于对象
+	
 		parent1.crossOver(t2, point1, point2);
 		parent2.crossOver(t1, point2, point1);
 	}

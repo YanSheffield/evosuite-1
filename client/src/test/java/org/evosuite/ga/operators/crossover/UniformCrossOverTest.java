@@ -8,6 +8,11 @@ import org.evosuite.ga.ConstructionFailedException;
 import org.evosuite.ga.DummyChromosome;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Yan Ge
+ *
+ */
 public class UniformCrossOverTest {
 
 	@Test

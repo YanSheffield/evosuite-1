@@ -189,44 +189,49 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 					"AbstractTestSuiteChromosome.crossOver() called with parameter of unsupported type "
 							+ other.getClass());
 		}
-		
+		// The probability of uniform crossover depends on the high mutation
+		// probability.
+		// The code shows the the uniform crossover probability that takes from
+		// best mutant.
+		// The corresponding probability that take from parent is
+		// (1-probilityBitesFromMutant)
 		double probilityBitesFromMutant = (1.0 / tests.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY);
 
 		AbstractTestSuiteChromosome<T> chromosome = (AbstractTestSuiteChromosome<T>) other;
 
 		for (int i = 0; i < tests.size(); i++) {
-			// bites from best mutant
-			if (s.equals("mutant")) {// test 是 parent
+			// bites from best mutant(parent is the basis model)
+			if (s.equals("mutant")) {
 				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
 					tests.remove(i);
-					T otherTest = chromosome.tests.get(i);// 换成 mutant
+					// take one test case from best mutant.
+					T otherTest = chromosome.tests.get(i);
 					T clonedTest = (T) otherTest.clone();
-					tests.add(i,clonedTest);
+					tests.add(i, clonedTest);
 				}
 			} else {// if the basis is mutant itself,the probability of
 					// obtaining the bits from parent is (1-pro).
-				// That is,the probability of change.
 				if (Randomness.nextDouble() <= 1 - probilityBitesFromMutant) {
 					tests.remove(i);
-					T otherTest = chromosome.tests.get(i);// 换成 parent,
+					T otherTest = chromosome.tests.get(i);
 					T clonedTest = (T) otherTest.clone();
-					tests.add(i,clonedTest);
+					tests.add(i, clonedTest);
 				}
 			}
 		}
-		//the length between best mutant and parent is not identical.Obtaining 
-		//the extra part base on crossover probability
-		for(int i = tests.size(); i< other.size();i++){
-			if(s.equals("mutant")){
-				if (Randomness.nextDouble() <= probilityBitesFromMutant){
+		// the length between best mutant and parent is not identical.Obtaining
+		// the extra part with same crossover probability
+		for (int i = tests.size(); i < other.size(); i++) {
+			if (s.equals("mutant")) {
+				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
 					tests.add(chromosome.tests.get(i));
 				}
-			}else {
-				if (Randomness.nextDouble() <= 1-probilityBitesFromMutant){
-				tests.add(chromosome.tests.get(i));
+			} else {
+				if (Randomness.nextDouble() <= 1 - probilityBitesFromMutant) {
+					tests.add(chromosome.tests.get(i));
 				}
 			}
-		}		
+		}
 	}
 
 	/** {@inheritDoc} */
@@ -267,17 +272,32 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		// Mutate existing test cases
 		for (int i = 0; i < tests.size(); i++) {
 			T test = tests.get(i);
-			// 在一个 test suite 有10个 test cases，循环十次，所有所以有些有多个
-			// 循环的是 test case，也就是 bite，因此符合 bite mutation，如何增加 mutation
-			// probability
 			if (Randomness.nextDouble() < 1.0 / tests.size()) {
-				// actual mutation operation
 				test.mutate();
 				if (test.isChanged())
 					changed = true;
 			}
 		}
-		addNewTestCase();
+		// Add new test cases
+		final double ALPHA = Properties.P_TEST_INSERTION; // 0.1;
+
+		for (int count = 1; Randomness.nextDouble() <= Math.pow(ALPHA, count)
+				&& size() < Properties.MAX_SIZE; count++) {
+			T test = testChromosomeFactory.getChromosome();
+			addTest(test);
+			logger.debug("Adding new test case");
+			changed = true;
+		}
+
+		Iterator<T> testIterator = tests.iterator();
+		while (testIterator.hasNext()) {
+			T test = testIterator.next();
+			if (test.size() == 0)
+				testIterator.remove();
+		}
+		if (changed) {
+			this.setChanged(true);
+		}
 	}
 
 	/**
@@ -287,30 +307,24 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 	 */
 	public void mutateWithHighProbobility() {
 		boolean changed = false;
-		// mutation bites are chosen randomly according to binomial distribution
-		// β(n,p)
-		// n denotes the length of bit string.In this context, it is regarded as
-		// the number of
-		// test case in a test suite.Also p is the high mutation probability
+		// the number of mutation bites are chosen randomly according to binomial distribution
+		// β(n,p) n denotes the length of bit string.In this context, it is regarded as
+		// the number of test case in a test suite.Also p is the high mutation probability
 		BinomialDistribution bi = new BinomialDistribution(tests.size(), Properties.HIGH_MUTATION_PROBOBILITY);
+		//obtain the number of changed bites
 		int samples = bi.sample();
 		Set<Integer> changeBites = new HashSet<>();
+		//obtain randomly the mutation bites position
 		while (changeBites.size() < samples) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, tests.size());
 			changeBites.add(randomNum);
 		}
 		for (int i : changeBites) {
 			T test = tests.get(i);
-			// System.out.println("i "+i);
 			test.mutate();
 			if (test.isChanged())
 				changed = true;
 		}
-		addNewTestCase();
-	}
-
-	public void addNewTestCase() {
-		boolean changed = false;
 		// Add new test cases
 		final double ALPHA = Properties.P_TEST_INSERTION; // 0.1;
 
