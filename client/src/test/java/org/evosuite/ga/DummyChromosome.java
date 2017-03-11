@@ -111,7 +111,7 @@ public class DummyChromosome extends Chromosome {
 
 	@Override
 	public void uniformCrossOver(Chromosome other, String identify) throws ConstructionFailedException {
-		double probilityBitesFromMutant = (1.0 / values.size()) * (1.0 / Properties.HIGH_MUTATION_PROBOBILITY);
+		double probilityBitesFromMutant = (1.0 / values.size()) * (1.0 / Properties.HIGH_MUTATION_PROBABILITY);
 		DummyChromosome chromosome = (DummyChromosome) other;
 
 		for (int i = 0; i < values.size(); i++) {
