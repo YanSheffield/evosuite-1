@@ -522,7 +522,7 @@ public class Properties {
 	@DoubleValue(min = 0.0, max = 1.0)
 	public static double MUTATION_RATE = 0.75;
 
-	/** Constant <code>MUTATION_RATE=0.75</code> */
+	/** Constant <code>HIGH_MUTATION_PROBOBILITY = 1d / 3d</code> */
 	@Parameter(key = "high_mutation_probability", group = "Search Algorithm", description = "It is applied on lambda GA only")
 	@DoubleValue(min = 0.0, max = 1.0)
 	public static double HIGH_MUTATION_PROBOBILITY = 1d / 3d;

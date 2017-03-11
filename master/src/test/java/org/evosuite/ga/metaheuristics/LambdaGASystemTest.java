@@ -11,7 +11,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.examples.with.different.packagename.Calculator;
-
+/**
+ * 
+ * @author Yan Ge
+ *
+ */
 public class LambdaGASystemTest extends SystemTestBase{
 
 	@Test

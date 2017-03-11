@@ -1,3 +1,22 @@
+/**
+ * Copyright (C) 2010-2016 Gordon Fraser, Andrea Arcuri and EvoSuite
+ * contributors
+ *
+ * This file is part of EvoSuite.
+ *
+ * EvoSuite is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3.0 of the License, or
+ * (at your option) any later version.
+ *
+ * EvoSuite is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with EvoSuite. If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.evosuite.ga.metaheuristics;
 
 import java.util.ArrayList;
@@ -14,16 +33,21 @@ import org.evosuite.ga.operators.crossover.UniformCrossOver;
 import org.evosuite.testsuite.TestSuiteChromosome;
 import org.evosuite.utils.LoggingUtils;
 
+/**
+ * (1+(lambda,lambda))GA implementation 
+ * 
+ * @author Yan Ge
+ */
 public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
-	// what is used for??
+	
 	private static final long serialVersionUID = 529089847512798127L;
-	// new TestSuiteChromosomeFactory(new ArchiveTestChromosomeFactory());
+	
 	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LambdaGA.class);
 
 	protected UniformCrossOver crossoverFunction = new UniformCrossOver();
 
 	public LambdaGA(ChromosomeFactory<T> factory) {
-		super(factory);// call parent's constructor
+		super(factory);
 	}
 
 	@Override
@@ -34,28 +58,35 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		T parent = (T) population.get(0).clone();
 		// control the number of offspring
 		while (!isNextPopulationFull(mutants)) {
-			// clone offspring from parent
+			
+			// clone firstly offspring from parent
 			T MutationOffspring = (T) parent.clone();
-//			System.out.println("before mutation size "+MutationOffspring.size());
-			// operate mutation before crossover operation
 			notifyMutation(MutationOffspring);
+			
+			//perform mutation operation with high probability 
 			MutationOffspring.mutateWithHighProbability();
-			// newGeneration = getBestIndividuals();
-//			System.out.println("After mutation size "+MutationOffspring.size());
-//			System.out.println("--"+MutationOffspring.equals(parent));
 			mutants.add(MutationOffspring);
 		}
+		//mutants are evaluated as current population so that the best mutant
+		//can be selected
 		population = mutants;
 
 		updateFitnessFunctionsAndValues();
 		calculateFitnessAndSortPopulation();
+		
+		//obtain the best mutant
 		T bestMutant = getBestIndividual();
-		// uniform crossover phrase
+		
+		// start to execute uniform crossover operator
 		List<T> crossoverOffspring = new ArrayList<T>();
 
 		while (!isNextPopulationFull(crossoverOffspring)) {
 			try {			
-				//question one. The number of test case
+				//the individual which has the shorter size is chosen as 
+				//the model basis of uniform crossover.The reason why I do this is that the size between 
+				//best mutant and parent maybe different after mutation operation, which is the biggest difference 
+				//from standard uniform crossover. This shorter individual will be basis model, and take bites(test cases)
+				//from parent or keep itself with crossover probability. 
 				if (parent.size() < bestMutant.size()) {
 					crossoverFunction.crossOver(parent, bestMutant);
 					crossoverOffspring.add(parent);
@@ -72,7 +103,7 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		updateFitnessFunctionsAndValues();
 		calculateFitnessAndSortPopulation();
 		T bestCrossoverOffspring = getBestIndividual();
-
+		// judge which one will be regarded as the parent for next iteration
 		if(isBetterOrEqual(bestCrossoverOffspring,parent)){
 			population.set(0, bestCrossoverOffspring);
 		}else{
@@ -86,7 +117,7 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	public void initializePopulation() {
 		notifySearchStarted();
 		currentIteration = 0;
-		// Only one parent produced
+		//Initialize one size parent
 		generateRandomPopulation(1);
 		calculateFitnessAndSortPopulation();
 		updateFitnessFunctionsAndValues();
@@ -100,13 +131,13 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			disableFirstSecondaryCriterion();
 		}
 
-		if (population.isEmpty()) {// All of results are stored in population
+		if (population.isEmpty()) {
 			initializePopulation();
 		}
-		logger.debug("Starting evolution");
 		int starvationCounter = 0;
 		double bestFitness = Double.MAX_VALUE;
 		double lastBestFitness = Double.MAX_VALUE;
+		
 		if (getFitnessFunction().isMaximizationFunction()) {
 			bestFitness = 0.0;
 			lastBestFitness = 0.0;
@@ -116,10 +147,11 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			logger.info("Best fitness: " + getBestIndividual().getFitness());
 			
 			evolve();
+			
 			applyLocalSearch();
 			
 			double newFitness = getBestIndividual().getFitness();
-
+	
 			if (getFitnessFunction().isMaximizationFunction())
 				assert (newFitness >= bestFitness) : "best fitness was: " + bestFitness + ", now best fitness is "
 						+ newFitness;
@@ -134,7 +166,6 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 				logger.info("reset starvationCounter after " + starvationCounter + " iterations");
 				starvationCounter = 0;
 				lastBestFitness = bestFitness;
-
 			}
 
 			updateSecondaryCriterion(starvationCounter);

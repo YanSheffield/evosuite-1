@@ -264,7 +264,7 @@ public class EvoSuite {
             if (line.hasOption(Continuous.NAME)) {
                 return Continuous.execute(options, javaOpts, line);
             }
-//Enter Point 2 * 1
+
             return TestGeneration.executeTestGeneration(options, javaOpts, line);
 
         } catch (ParseException exp) {
@@ -298,7 +298,6 @@ public class EvoSuite {
 
         try {
             EvoSuite evosuite = new EvoSuite();
-//Enter point 1 * 2
             evosuite.parseCommandLine(args);
         } catch (Throwable t) {
             logger.error("Fatal crash on main EvoSuite process. Class "
