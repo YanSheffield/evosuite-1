@@ -78,38 +78,32 @@ public class DummyChromosome extends Chromosome {
         return values;
     }
 
-	@Override
-	public boolean localSearch(LocalSearchObjective<? extends Chromosome> objective) {
-		return false;
-	}
+    @Override
+    public void crossOver(Chromosome other, int position1, int position2) throws ConstructionFailedException {
+        DummyChromosome chromosome = (DummyChromosome) other;
 
-	@Override
-	public int size() {
-		return values.size();
-	}
+        while (values.size() > position1) {
+            values.remove(position1);
+        }
 
-	@Override
-	public void mutateWithHighProbability() {
-		// TODO Auto-generated method stub
+        for (int num = position2; num < other.size(); num++) {
+            values.add(chromosome.get(num));
+        }
 
-	}
+        this.setChanged(true);
+    }
 
-	@Override
-	public void crossOver(Chromosome other, int position1, int position2) throws ConstructionFailedException {
-		DummyChromosome chromosome = (DummyChromosome) other;
-		
-		while (values.size() > position1) {
-			values.remove(position1);
-		}
+    @Override
+    public boolean localSearch(LocalSearchObjective<? extends Chromosome> objective) {
+        return false;
+    }
 
-		for (int num = position2; num < other.size(); num++) {
-			values.add(chromosome.get(num));
-		}
+    @Override
+    public int size() {
+        return values.size();
+    }
 
-		this.setChanged(true);
-	}
-
-	@Override
+    @Override
 	public void uniformCrossOver(Chromosome other, String identify) throws ConstructionFailedException {
 		double probilityBitesFromMutant = (1.0 / values.size()) * (1.0 / Properties.HIGH_MUTATION_PROBABILITY);
 		DummyChromosome chromosome = (DummyChromosome) other;
@@ -140,6 +134,9 @@ public class DummyChromosome extends Chromosome {
 			}
 		};
 		this.setChanged(true);
+	}
+       @Override
+	public void mutateWithHighProbability() {
 	}
 
 }

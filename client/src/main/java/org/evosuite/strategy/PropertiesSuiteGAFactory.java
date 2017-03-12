@@ -41,6 +41,7 @@ import org.evosuite.ga.metaheuristics.RandomSearch;
 import org.evosuite.ga.metaheuristics.SPEA2;
 import org.evosuite.ga.metaheuristics.SteadyStateGA;
 import org.evosuite.ga.metaheuristics.NSGAII;
+import org.evosuite.ga.metaheuristics.OnePlusLambdaEA;
 import org.evosuite.ga.metaheuristics.mosa.MOSA;
 import org.evosuite.ga.metaheuristics.OnePlusOneEA;
 import org.evosuite.ga.metaheuristics.StandardGA;
@@ -188,7 +189,7 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
         	return new LambdaGA<TestSuiteChromosome>(factory);
         case ONEPLUSLAMBDAEA:
         	logger.info("Choose search algorithm: One plus Lambda EA");
-        	return new LambdaGA<TestSuiteChromosome>(factory);
+        	 return new OnePlusLambdaEA<TestSuiteChromosome>(factory);
         case SPEA2:
             logger.info("Chosen search algorithm: SPEA2");
             return new SPEA2<TestSuiteChromosome>(factory);

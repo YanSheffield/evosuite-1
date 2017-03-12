@@ -197,15 +197,8 @@ public class NSGAChromosome extends Chromosome
 
 	@Override
 	public void mutateWithHighProbability() {
-		// TODO Auto-generated method stub
-		
 	}
-
-
-
 	@Override
-	public void uniformCrossOver(Chromosome bestMutant, String identify) throws ConstructionFailedException {
-		// TODO Auto-generated method stub
-		
+	public void uniformCrossOver(Chromosome bestMutant, String identify) throws ConstructionFailedException {	
 	}
 }

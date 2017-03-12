@@ -37,7 +37,7 @@ import org.evosuite.regression.RegressionTestChromosomeFactory;
 import org.evosuite.testcase.ExecutableChromosome;
 import org.evosuite.testcase.execution.ExecutionResult;
 import org.evosuite.testcase.factories.RandomLengthTestFactory;
-import org.evosuite.testsuite.distribution.BinomialDistribution;
+import org.evosuite.utils.BinomialDistribution;
 import org.evosuite.utils.Randomness;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.slf4j.Logger;
@@ -284,6 +284,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 			if(test.size() == 0)
 				testIterator.remove();
 		}
+		
 		if (changed) {
 			this.setChanged(true);
 		}
