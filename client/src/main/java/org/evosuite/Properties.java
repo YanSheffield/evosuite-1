@@ -334,7 +334,7 @@ public class Properties {
 	// ---------------------------------------------------------------
 	// Search algorithm
 	public enum Algorithm {
-		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2, LAMBDAGA, ONEPLUSLAMBDAEA
+		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2,LAMBDAGA, ONEPLUSLAMBDAEA
 	}
 
 	// MOSA PROPERTIES
@@ -1186,13 +1186,15 @@ public class Properties {
     @Parameter(key = "virtual_fs", group = "Sandbox", description = "Usa a virtual file system for all File I/O operations")
     public static boolean VIRTUAL_FS = true;
 
-	@Parameter(key = "virtual_net", group = "Sandbox", description = "Usa a virtual network for all TCP/UDP communications")
-	public static boolean VIRTUAL_NET = true;
 
-	@Parameter(key = "use_separate_classloader", group = "Sandbox", description = "Usa a separate classloader in the final test cases")
-	public static boolean USE_SEPARATE_CLASSLOADER = true;
+    @Parameter(key = "virtual_net", group = "Sandbox", description = "Usa a virtual network for all TCP/UDP communications")
+    public static boolean VIRTUAL_NET = true;
 
-	// ---------------------------------------------------------------
+    @Parameter(key = "use_separate_classloader", group = "Sandbox", description = "Usa a separate classloader in the final test cases")
+    public static boolean USE_SEPARATE_CLASSLOADER = true;
+
+
+    // ---------------------------------------------------------------
 	// Experimental
 
 
