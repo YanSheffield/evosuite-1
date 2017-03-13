@@ -53,6 +53,7 @@ import org.evosuite.ga.operators.crossover.CrossOverFunction;
 import org.evosuite.ga.operators.crossover.SinglePointCrossOver;
 import org.evosuite.ga.operators.crossover.SinglePointFixedCrossOver;
 import org.evosuite.ga.operators.crossover.SinglePointRelativeCrossOver;
+import org.evosuite.ga.operators.crossover.UniformCrossOver;
 import org.evosuite.ga.operators.selection.BinaryTournamentSelectionCrowdedComparison;
 import org.evosuite.ga.operators.selection.FitnessProportionateSelection;
 import org.evosuite.ga.operators.selection.RankSelection;
@@ -228,6 +229,8 @@ public class PropertiesSuiteGAFactory extends PropertiesSearchAlgorithmFactory<T
 			return new SinglePointRelativeCrossOver();
 		case SINGLEPOINT:
 			return new SinglePointCrossOver();
+		case UNIFORM:
+		    return new UniformCrossOver();
 		case COVERAGE:
 			if (Properties.STRATEGY != Properties.Strategy.EVOSUITE)
 				throw new RuntimeException(
