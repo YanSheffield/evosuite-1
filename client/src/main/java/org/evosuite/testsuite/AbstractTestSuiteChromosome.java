@@ -21,8 +21,8 @@ package org.evosuite.testsuite;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -267,7 +267,7 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
           BinomialDistribution bi = new BinomialDistribution(tests.size(), Properties.HIGH_MUTATION_PROBABILITY);
           //obtain the number of changed bites
           int samples = bi.sample();
-          Set<Integer> changeBites = new HashSet<>();
+          Set<Integer> changeBites = new LinkedHashSet<Integer>();
           //obtain randomly the mutation bites position
           while (changeBites.size() < samples) {
               changeBites.add(Randomness.nextInt(0, tests.size()));
