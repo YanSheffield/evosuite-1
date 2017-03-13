@@ -135,8 +135,5 @@ public class DummyChromosome extends Chromosome {
 		};
 		this.setChanged(true);
 	}
-       @Override
-	public void mutateWithHighProbability() {
-	}
 
 }

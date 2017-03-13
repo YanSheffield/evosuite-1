@@ -21,8 +21,10 @@ package org.evosuite.ga.operators.crossover;
 
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ConstructionFailedException;
+
 /**
  * Implement uniform crossover 
+ *
  * @author Yan Ge
  */
 public class UniformCrossOver extends CrossOverFunction{

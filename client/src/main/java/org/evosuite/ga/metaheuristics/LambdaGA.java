@@ -26,12 +26,8 @@ import org.evosuite.Properties;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
 import org.evosuite.ga.ConstructionFailedException;
-import org.evosuite.ga.FitnessFunction;
-import org.evosuite.ga.operators.crossover.CrossOverFunction;
-import org.evosuite.ga.operators.crossover.SinglePointCrossOver;
-import org.evosuite.ga.operators.crossover.UniformCrossOver;
-import org.evosuite.testsuite.TestSuiteChromosome;
-import org.evosuite.utils.LoggingUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * (1+(lambda,lambda))GA implementation 
@@ -42,9 +38,7 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	
 	private static final long serialVersionUID = 529089847512798127L;
 	
-	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LambdaGA.class);
-
-	protected UniformCrossOver crossoverFunction = new UniformCrossOver();
+	private static final Logger logger = LoggerFactory.getLogger(LambdaGA.class);
 
 	public LambdaGA(ChromosomeFactory<T> factory) {
 		super(factory);
@@ -64,7 +58,7 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			notifyMutation(MutationOffspring);
 			
 			//perform mutation operation with high probability 
-			MutationOffspring.mutateWithHighProbability();
+			MutationOffspring.mutate();
 			mutants.add(MutationOffspring);
 		}
 		//mutants are evaluated as current population so that the best mutant

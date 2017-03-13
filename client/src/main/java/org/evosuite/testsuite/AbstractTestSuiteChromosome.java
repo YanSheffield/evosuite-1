@@ -25,7 +25,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import org.evosuite.Properties;
@@ -169,11 +168,16 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		this.setChanged(true);
 	}
 
-	public void uniformCrossOver(Chromosome other, String s) throws ConstructionFailedException {
-		if (!(other instanceof AbstractTestSuiteChromosome<?>)) {
+	/**
+     * {@inheritDoc}
+     */
+	@SuppressWarnings("unchecked")
+    @Override
+	public void uniformCrossOver(Chromosome individual, String identify) throws ConstructionFailedException {
+		if (!(individual instanceof AbstractTestSuiteChromosome<?>)) {
 			throw new IllegalArgumentException(
 					"AbstractTestSuiteChromosome.crossOver() called with parameter of unsupported type "
-							+ other.getClass());
+							+ individual.getClass());
 		}
 		// The probability of uniform crossover depends on the high mutation
 		// probability.
@@ -183,11 +187,11 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		// (1-probilityBitesFromMutant)
 		double probilityBitesFromMutant = (1.0 / tests.size()) * (1.0 / Properties.HIGH_MUTATION_PROBABILITY);
 
-		AbstractTestSuiteChromosome<T> chromosome = (AbstractTestSuiteChromosome<T>) other;
+		AbstractTestSuiteChromosome<T> chromosome = (AbstractTestSuiteChromosome<T>) individual;
 
 		for (int i = 0; i < tests.size(); i++) {
 			// bites from best mutant(parent is the basis model)
-			if (s.equals("mutant")) {
+			if (identify.equals("mutant")) {
 				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
 					tests.remove(i);
 					// take one test case from best mutant.
@@ -207,8 +211,8 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		}
 		// the length between best mutant and parent is not identical.Obtaining
 		// the extra part with same crossover probability
-		for (int i = tests.size(); i < other.size(); i++) {
-			if (s.equals("mutant")) {
+		for (int i = tests.size(); i < individual.size(); i++) {
+			if (identify.equals("mutant")) {
 				if (Randomness.nextDouble() <= probilityBitesFromMutant) {
 					tests.add(chromosome.tests.get(i));
 				}
@@ -256,14 +260,36 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 	public void mutate() {
 		boolean changed = false;
 
-		// Mutate existing test cases
-		for (int i = 0; i < tests.size(); i++) {
-			T test = tests.get(i);
-			if (Randomness.nextDouble() < 1.0 / tests.size()) {
-				test.mutate();
-				if(test.isChanged())
-					changed = true;
-			}
+		if (Properties.ALGORITHM == Properties.Algorithm.LAMBDAGA) {
+          // the number of mutation bites are chosen randomly according to binomial distribution
+          // β(n,p) n denotes the length of bit string.In this context, it is regarded as
+          // the number of test case in a test suite.Also p is the high mutation probability
+          BinomialDistribution bi = new BinomialDistribution(tests.size(), Properties.HIGH_MUTATION_PROBABILITY);
+          //obtain the number of changed bites
+          int samples = bi.sample();
+          Set<Integer> changeBites = new HashSet<>();
+          //obtain randomly the mutation bites position
+          while (changeBites.size() < samples) {
+              changeBites.add(Randomness.nextInt(0, tests.size()));
+          }
+          for (int i : changeBites) {
+              T test = tests.get(i);
+              test.mutate();
+              if (test.isChanged()) {
+                  changed = true;
+              }
+          }
+		} else {
+		    // Mutate existing test cases
+		    for (int i = 0; i < tests.size(); i++) {
+		        T test = tests.get(i);
+		        if (Randomness.nextDouble() < 1.0 / tests.size()) {
+		            test.mutate();
+		            if(test.isChanged()) {
+		              changed = true;
+		            }
+		        }
+		    }
 		}
 
 		// Add new test cases
@@ -285,53 +311,6 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 		}
 		
 
-		if (changed) {
-			this.setChanged(true);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Apply mutation with high probability to lambda GA
-	 */
-	public void mutateWithHighProbobility() {
-		boolean changed = false;
-		// the number of mutation bites are chosen randomly according to binomial distribution
-		// β(n,p) n denotes the length of bit string.In this context, it is regarded as
-		// the number of test case in a test suite.Also p is the high mutation probability
-		BinomialDistribution bi = new BinomialDistribution(tests.size(), Properties.HIGH_MUTATION_PROBABILITY);
-		//obtain the number of changed bites
-		int samples = bi.sample();
-		Set<Integer> changeBites = new HashSet<>();
-		//obtain randomly the mutation bites position
-		while (changeBites.size() < samples) {
-			int randomNum = ThreadLocalRandom.current().nextInt(0, tests.size());
-			changeBites.add(randomNum);
-		}
-		for (int i : changeBites) {
-			T test = tests.get(i);
-			test.mutate();
-			if (test.isChanged())
-				changed = true;
-		}
-		// Add new test cases
-		final double ALPHA = Properties.P_TEST_INSERTION; // 0.1;
-
-		for (int count = 1; Randomness.nextDouble() <= Math.pow(ALPHA, count)
-				&& size() < Properties.MAX_SIZE; count++) {
-			T test = testChromosomeFactory.getChromosome();
-			addTest(test);
-			logger.debug("Adding new test case");
-			changed = true;
-		}
-
-		Iterator<T> testIterator = tests.iterator();
-		while (testIterator.hasNext()) {
-			T test = testIterator.next();
-			if (test.size() == 0)
-				testIterator.remove();
-		}
 		if (changed) {
 			this.setChanged(true);
 		}

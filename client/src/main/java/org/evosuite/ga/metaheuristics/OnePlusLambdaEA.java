@@ -25,6 +25,9 @@ import java.util.List;
 import org.evosuite.Properties;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * (1+lambda)EA implementation 
  * 
@@ -34,7 +37,7 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	
 	private static final long serialVersionUID = 5229089847512798127L;
 	
-	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OnePlusOneEA.class);
+	private static final Logger logger = LoggerFactory.getLogger(OnePlusLambdaEA.class);
 	
 	public OnePlusLambdaEA(ChromosomeFactory<T> factory) {
 		super(factory);

@@ -268,17 +268,6 @@ public class TestSuiteChromosome extends AbstractTestSuiteChromosome<TestChromos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Apply high mutation on test suite level
-	 */
-	public void mutateWithHighProbability(){
-		for (int i = 0; i < Properties.NUMBER_OF_MUTATIONS; i++) {
-			super.mutateWithHighProbobility();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * Determine relative ordering of this chromosome to another chromosome If
 	 * fitness is equal, the shorter chromosome comes first
 	 */

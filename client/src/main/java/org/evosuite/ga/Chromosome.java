@@ -274,10 +274,6 @@ public abstract class Chromosome implements Comparable<Chromosome>, Serializable
 	 * Apply mutation
 	 */
 	public abstract void mutate();
-	/**
-	 * Apply mutation with high probability
-	 */
-	public abstract void mutateWithHighProbability();
 
 	/**
 	 * Fixed single point cross over
@@ -307,7 +303,15 @@ public abstract class Chromosome implements Comparable<Chromosome>, Serializable
 	 */
 	public abstract void crossOver(Chromosome other, int position1, int position2)
 			throws ConstructionFailedException;
-	public abstract void uniformCrossOver(Chromosome individual,String identify) 
+
+	/**
+	 * Uniform cross over
+	 *
+	 * @param individual TODO
+	 * @param identify TODO
+	 * @throws org.evosuite.ga.ConstructionFailedException if any.
+	 */
+	public abstract void uniformCrossOver(Chromosome individual, String identify)
 			throws ConstructionFailedException;	
 
 	/**

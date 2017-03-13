@@ -189,6 +189,14 @@ public class TestChromosome extends ExecutableChromosome {
 	}
 
 	/**
+     * {@inheritDoc}
+     */
+    @Override
+    public void uniformCrossOver(Chromosome individual, String identify) throws ConstructionFailedException {
+      // empty
+    }
+
+	/**
 	 * {@inheritDoc}
 	 *
 	 * Two chromosomes are equal if their tests are equal
@@ -729,12 +737,6 @@ public class TestChromosome extends ExecutableChromosome {
 	 */
 	public static List<SecondaryObjective<?>> getSecondaryObjectives() {
 		return secondaryObjectives;
-	}
-	@Override
-	public void mutateWithHighProbability() {
-	}
-	@Override
-	public void uniformCrossOver(Chromosome individual, String identify) throws ConstructionFailedException {
 	}
 
 }
