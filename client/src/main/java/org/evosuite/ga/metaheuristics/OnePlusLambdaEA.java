@@ -43,6 +43,7 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		super(factory);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void evolve() {
 		List<T> mutants = new ArrayList<T>();
@@ -78,8 +79,8 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		currentIteration = 0;
 		// initialize one size parent
 		generateRandomPopulation(1);
+		// Determine fitness
 		calculateFitnessAndSortPopulation();
-		updateFitnessFunctionsAndValues();
 		this.notifyIteration();
 		logger.info("Initial fitness: " + population.get(0).getFitness());		
 	}
@@ -98,8 +99,9 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			logger.debug("Current population: " + getAge() + "/" + Properties.SEARCH_BUDGET);
 			logger.info("Best fitness: " + getBestIndividual().getFitness());
 			evolve();
+			// Determine fitness
+			calculateFitnessAndSortPopulation();
 			applyLocalSearch();
-			updateFitnessFunctionsAndValues();
 
 			this.notifyIteration();
 		}
