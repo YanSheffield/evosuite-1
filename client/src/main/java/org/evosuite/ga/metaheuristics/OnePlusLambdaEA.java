@@ -20,11 +20,14 @@
 package org.evosuite.ga.metaheuristics;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.evosuite.Properties;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
+import org.evosuite.utils.LoggingUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +52,6 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		List<T> mutants = new ArrayList<T>();
 
 		T parent = (T) population.get(0).clone();
-		
 		while (!isNextPopulationFull(mutants)) {
 			T mutationOffspring = (T) parent.clone();
 			//execute mutation operation
@@ -62,8 +64,26 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		}
 		population = mutants;
 		updateFitnessFunctionsAndValues();
-		calculateFitnessAndSortPopulation();
-		T bestMutant = getBestIndividual();
+		assert !population.isEmpty();
+		//calculateFitnessAndSortPopulation();
+		// as 'calculateFitnessAndSortPopulation' could remove all
+		// of test cases, because all of them *have been changed*
+		// it might be better to use a custom sort
+		//assert !population.isEmpty();
+		//T bestMutant = getBestIndividual();
+		Collections.sort(mutants, new Comparator<T>() {
+			@Override
+			public int compare(T o1, T o2) {
+				if (o1.getFitness() < o2.getFitness()) {
+					return -1;
+				} else if (o1.getFitness() > o2.getFitness()) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		});
+		T bestMutant = mutants.get(0);
 		//select the individual as the parent for next iteration
 		if (isBetterOrEqual(bestMutant, parent)) {
 			population.set(0, bestMutant);
@@ -99,8 +119,6 @@ public class OnePlusLambdaEA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			logger.debug("Current population: " + getAge() + "/" + Properties.SEARCH_BUDGET);
 			logger.info("Best fitness: " + getBestIndividual().getFitness());
 			evolve();
-			// Determine fitness
-			calculateFitnessAndSortPopulation();
 			applyLocalSearch();
 
 			this.notifyIteration();

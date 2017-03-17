@@ -104,7 +104,6 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		}else{
 			population.set(0, parent);
 		}
-		updateFitnessFunctionsAndValues();
 		currentIteration++;
 	}
 
