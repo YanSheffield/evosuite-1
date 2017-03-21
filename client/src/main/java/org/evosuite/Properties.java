@@ -334,7 +334,7 @@ public class Properties {
 	// ---------------------------------------------------------------
 	// Search algorithm
 	public enum Algorithm {
-		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2,LAMBDAGA, ONEPLUSLAMBDAEA
+		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, MUPLUSLAMBDAEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2, LAMBDAGA, ONEPLUSLAMBDAEA
 	}
 
 	// MOSA PROPERTIES
@@ -562,6 +562,14 @@ public class Properties {
 	/** Constant <code>ELITE=1</code> */
 	@Parameter(key = "elite", group = "Search Algorithm", description = "Elite size for search algorithm")
 	public static int ELITE = 1;
+
+	/** Constant <code>MU=1</code> */
+    @Parameter(key = "mu", group = "Search Algorithm", description = "Number of individuals selected by Mu + Lambda EA for the next generation")
+    public static int MU = 1;
+
+    /** Constant <code>LAMBDA=1</code> */
+    @Parameter(key = "lambda", group = "Search Algorithm", description = "Number of individuals produced by Mu + Lambda EA at each generation")
+    public static int LAMBDA = 1;
 
 	/** Constant <code>TOURNAMENT_SIZE=10</code> */
 	@Parameter(key = "tournament_size", group = "Search Algorithm", description = "Number of individuals for tournament selection")
