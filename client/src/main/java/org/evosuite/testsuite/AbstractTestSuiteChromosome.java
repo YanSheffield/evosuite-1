@@ -38,6 +38,7 @@ import org.evosuite.testcase.execution.ExecutionResult;
 import org.evosuite.testcase.factories.RandomLengthTestFactory;
 import org.evosuite.utils.BinomialDistribution;
 import org.evosuite.utils.Randomness;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -310,7 +311,53 @@ public abstract class AbstractTestSuiteChromosome<T extends ExecutableChromosome
 				testIterator.remove();
 		}
 		
+		if (changed) {
+			this.setChanged(true);
+		}
+	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * Apply mutation with high probability to lambda GA
+	 */
+	public void mutateWithHighProbobility() {
+		boolean changed = false;
+		// the number of mutation bites are chosen randomly according to binomial distribution
+		// β(n,p) n denotes the length of bit string.In this context, it is regarded as
+		// the number of test case in a test suite.Also p is the high mutation probability
+		BinomialDistribution bi = new BinomialDistribution(tests.size(), Properties.HIGH_MUTATION_PROBABILITY);
+		//obtain the number of changed bites
+		int samples = bi.sample();
+		Set<Integer> changeBites = new HashSet<>();
+		//obtain randomly the mutation bites position
+		while (changeBites.size() < samples) {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, tests.size());
+			changeBites.add(randomNum);
+		}
+		for (int i : changeBites) {
+			T test = tests.get(i);
+			test.mutate();
+			if (test.isChanged())
+				changed = true;
+		}
+		// Add new test cases
+		final double ALPHA = Properties.P_TEST_INSERTION; // 0.1;
+
+		for (int count = 1; Randomness.nextDouble() <= Math.pow(ALPHA, count)
+				&& size() < Properties.MAX_SIZE; count++) {
+			T test = testChromosomeFactory.getChromosome();
+			addTest(test);
+			logger.debug("Adding new test case");
+			changed = true;
+		}
+
+		Iterator<T> testIterator = tests.iterator();
+		while (testIterator.hasNext()) {
+			T test = testIterator.next();
+			if (test.size() == 0)
+				testIterator.remove();
+		}
 		if (changed) {
 			this.setChanged(true);
 		}
