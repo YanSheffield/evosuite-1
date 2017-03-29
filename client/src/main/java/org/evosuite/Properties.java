@@ -334,7 +334,7 @@ public class Properties {
 	// ---------------------------------------------------------------
 	// Search algorithm
 	public enum Algorithm {
-		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2,LAMBDAGA, ONEPLUSLAMBDAEA
+		STANDARDGA, MONOTONICGA, ONEPLUSONEEA, MUPLUSLAMBDAEA, STEADYSTATEGA, RANDOM, NSGAII, MOSA, SPEA2, LAMBDAGA, ONEPLUSLAMBDAEA
 	}
 
 	// MOSA PROPERTIES
@@ -563,6 +563,14 @@ public class Properties {
 	@Parameter(key = "elite", group = "Search Algorithm", description = "Elite size for search algorithm")
 	public static int ELITE = 1;
 
+	/** Constant <code>MU=1</code> */
+    @Parameter(key = "mu", group = "Search Algorithm", description = "Number of individuals selected by Mu + Lambda EA for the next generation")
+    public static int MU = 1;
+
+    /** Constant <code>LAMBDA=1</code> */
+    @Parameter(key = "lambda", group = "Search Algorithm", description = "Number of individuals produced by Mu + Lambda EA at each generation")
+    public static int LAMBDA = 1;
+
 	/** Constant <code>TOURNAMENT_SIZE=10</code> */
 	@Parameter(key = "tournament_size", group = "Search Algorithm", description = "Number of individuals for tournament selection")
 	public static int TOURNAMENT_SIZE = 10;
@@ -697,9 +705,9 @@ public class Properties {
 	@IntValue(min = 0)
 	public static int MINIMIZATION_TIMEOUT = 60;
 
-    @Parameter(key = "assertion_timeout", group = "Search Algorithm", description = "Seconds allowed for assertion generation at the end")
-    @IntValue(min = 0)
-    public static int ASSERTION_TIMEOUT = 60;
+	@Parameter(key = "assertion_timeout", group = "Search Algorithm", description = "Seconds allowed for assertion generation at the end")
+	@IntValue(min = 0)
+	public static int ASSERTION_TIMEOUT = 60;
 
     @Parameter(key="assertion_minimization_fallback", group = "Search Algorithm", description = "Percentage of tests expected to have assertions at fallback check time")
     public static double ASSERTION_MINIMIZATION_FALLBACK = 1/2d;
