@@ -26,6 +26,9 @@ import org.evosuite.Properties;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
 import org.evosuite.ga.ConstructionFailedException;
+import org.evosuite.testcase.TestChromosome;
+import org.evosuite.testsuite.TestSuiteChromosome;
+import org.evosuite.utils.LoggingUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,12 +97,13 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 				continue;
 			}
 		}
+		
 		population = crossoverOffspring;
 		updateFitnessFunctionsAndValues();
-		calculateFitnessAndSortPopulation();
 		T bestCrossoverOffspring = getBestIndividual();
+
 		// judge which one will be regarded as the parent for next iteration
-		if(isBetterOrEqual(bestCrossoverOffspring,parent)){
+		if(isBetterOrEqual(bestCrossoverOffspring, parent)){
 			population.set(0, bestCrossoverOffspring);
 		}else{
 			population.set(0, parent);
@@ -141,9 +145,6 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			logger.info("Best fitness: " + getBestIndividual().getFitness());
 			
 			evolve();
-
-			// Determine fitness
-			calculateFitnessAndSortPopulation();
 			
 			applyLocalSearch();
 			
