@@ -101,13 +101,22 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		population = crossoverOffspring;
 		updateFitnessFunctionsAndValues();
 		T bestCrossoverOffspring = getBestIndividual();
-
-		// judge which one will be regarded as the parent for next iteration
+		
+		T so_far_best_individual;
+		//compare bestCrossover offspring with parent and select the better one
 		if(isBetterOrEqual(bestCrossoverOffspring, parent)){
-			population.set(0, bestCrossoverOffspring);
+			so_far_best_individual = bestCrossoverOffspring;
 		}else{
-			population.set(0, parent);
+			so_far_best_individual = parent;
 		}
+		
+		// compare the so_far_best_individual with best mutant, and select the better one to be the parent for 
+		//next iteration.
+		if(isBetterOrEqual(so_far_best_individual, bestMutant)){
+			population.set(0, so_far_best_individual);
+		}else{
+			population.set(0, bestMutant);
+		}	
 		currentIteration++;
 	}
 
@@ -175,3 +184,5 @@ public class LambdaGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	}
 
 }
+
+
